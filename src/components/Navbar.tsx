@@ -1,7 +1,8 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Run, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { Runner } from "lucide-react"; // Closest match to "Run"
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -16,7 +17,7 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center">
-            <Run className="h-6 w-6 text-primary mr-2" />
+            <Runner className="h-6 w-6 text-primary mr-2" />
             <span className="font-bold text-lg">mynextbib.com</span>
           </Link>
           
