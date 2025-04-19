@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Running, Search } from "lucide-react";
+import { Run, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface PageHeaderProps {
@@ -19,7 +19,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
     <div className="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white">
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="flex items-center justify-center mb-4">
-          <Running className="h-8 w-8 mr-3" />
+          <Run className="h-8 w-8 mr-3" />
           <h1 className="text-2xl md:text-3xl font-bold">mynextbib.com</h1>
         </div>
         
@@ -35,7 +35,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                 className="bg-white text-blue-600 hover:bg-blue-50"
               >
                 <Link to="/wizard">
-                  <Running className="h-5 w-5 mr-2" /> 
+                  <Run className="h-5 w-5 mr-2" /> 
                   New Runner Wizard
                 </Link>
               </Button>
