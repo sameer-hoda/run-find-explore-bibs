@@ -1,6 +1,7 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
-import { Running } from "lucide-react";
+import { Run } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center">
-              <Running className="h-6 w-6 text-primary mr-2" />
+              <Run className="h-6 w-6 text-primary mr-2" />
               <span className="font-bold text-lg">mynextbib.com</span>
             </div>
             <p className="text-gray-600 text-sm">
