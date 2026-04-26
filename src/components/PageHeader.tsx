@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Search, Footprints } from "lucide-react";
+import { Search, Footprints, HelpCircle } from "lucide-react"; // Import HelpCircle
 import { Button } from "@/components/ui/button";
 
 interface PageHeaderProps {
@@ -12,46 +12,45 @@ interface PageHeaderProps {
 const PageHeader: React.FC<PageHeaderProps> = ({ 
   title = "Find Your Next Bib", 
   subtitle = "Discover running events tailored to your preferences", 
-  showWizardButton = true 
+  showWizardButton = true
 }) => {
   return (
-    <div className="w-full bg-gradient-to-r from-blue-600 to-blue-400 text-white">
-      <div className="container mx-auto px-4 py-8 md:py-12">
-        <div className="flex items-center justify-center mb-4">
-          <Footprints className="h-8 w-8 mr-3" />
-          <h1 className="text-2xl md:text-3xl font-bold">mynextbib.com</h1>
-        </div>
-        
-        <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-xl md:text-2xl font-bold mb-2">{title}</h2>
-          <p className="text-blue-100 mb-6">{subtitle}</p>
-          
-          {showWizardButton && (
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button 
-                asChild
-                size="lg" 
-                className="bg-white text-blue-600 hover:bg-blue-50"
-              >
-                <Link to="/wizard">
-                  <Footprints className="h-5 w-5 mr-2" /> 
-                  New Runner Wizard
-                </Link>
-              </Button>
-              
-              <Button 
-                asChild
-                size="lg" 
-                variant="outline" 
-                className="border-white text-white hover:bg-blue-500"
-              >
-                <Link to="/">
-                  <Search className="h-5 w-5 mr-2" /> 
-                  Browse All Events
-                </Link>
-              </Button>
-            </div>
-          )}
+    // Changed background gradient from blue to orange theme colors
+    // Changed text color from white to primary-foreground for contrast
+    // Reduced padding and removed the top logo/title section
+    <div className="w-full bg-gradient-to-r from-primary to-secondary text-primary-foreground">
+      {/* Add H1 for SEO - visually hidden */}
+      <h1 className="sr-only">{title}</h1>
+      <div className="container mx-auto px-4 py-4 md:py-6"> 
+        {/* Banner Section - Reduced height and margin */}
+        <div className="relative w-full mx-auto h-48 md:h-64 rounded-lg shadow-lg overflow-hidden my-4 bg-cover bg-center" style={{ backgroundImage: `url('/banner.png')` }}>
+          {/* Stack vertically on mobile, horizontally on medium+ */}
+          <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col space-y-4 items-center justify-center md:flex-row md:space-y-0 md:space-x-4 p-4"> 
+            {/* Find Your Next Run Button */}
+            <Button
+              asChild
+              // size="lg" removed, using Tailwind classes for responsive sizing
+              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-base font-semibold px-4 py-2 md:text-lg md:px-8 md:py-4" 
+            >
+              {/* Reverted to Link pointing to /wizard */}
+              <Link to="/wizard"> 
+                <Search className="h-5 w-5 mr-2" /> 
+                Find Your Next Run
+              </Link>
+            </Button>
+            {/* Running FAQ Button */}
+            <Button
+              asChild
+              // size="lg" removed, using Tailwind classes for responsive sizing
+              // Removed variant="outline"
+              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-base font-semibold px-4 py-2 md:text-lg md:px-8 md:py-4" // Use similar style as the other button
+            >
+              <Link to="/faq">
+                <HelpCircle className="h-5 w-5 mr-2" /> 
+                Running FAQ
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </div>

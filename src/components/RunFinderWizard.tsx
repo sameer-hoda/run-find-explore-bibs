@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // Import useEffect
 import { useNavigate } from "react-router-dom";
 import { 
   ArrowRight, 
@@ -14,18 +13,22 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
+// Remove Checkbox and Input imports if no longer needed elsewhere, add Badge if used
+import { Checkbox } from "@/components/ui/checkbox"; // Re-add Checkbox import
+// import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge"; // Using Badge for bubbles
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { FilterCriteria, Event, filterEvents } from "@/services/eventService";
+// Assuming eventService has a function to get cities and counts
+// Added EventInclusions import
+import { FilterCriteria, Event, filterEvents, getCitiesWithCounts, EventInclusions } from "@/services/eventService"; 
 
 interface RunFinderWizardProps {
   onComplete: (events: Event[], criteria: FilterCriteria) => void;
@@ -37,9 +40,27 @@ const RunFinderWizard: React.FC<RunFinderWizardProps> = ({ onComplete }) => {
   const [step, setStep] = useState(1);
   const [eventType, setEventType] = useState<"All" | "Physical" | "Virtual">("All");
   const [selectedDistances, setSelectedDistances] = useState<string[]>([]);
-  const [age, setAge] = useState<string>("");
+  const [age, setAge] = useState<string | null>(null); // Store selected age range, allow null
   const [selectedInclusions, setSelectedInclusions] = useState<string[]>([]);
-  const [location, setLocation] = useState<string>("");
+  const [selectedCities, setSelectedCities] = useState<string[]>([]); // Changed state for multi-select cities
+  const [sortedCities, setSortedCities] = useState<{ city: string; count: number }[]>([]);
+
+  // Fetch and sort cities when component mounts
+  useEffect(() => {
+    const fetchCities = async () => {
+      try {
+        // Placeholder: Replace with actual call to eventService to get cities and counts
+        const citiesData = await getCitiesWithCounts(); // Example function
+        // Sort cities by count descending
+        const sorted = citiesData.sort((a, b) => b.count - a.count);
+        setSortedCities(sorted);
+      } catch (error) {
+        console.error("Error fetching cities:", error);
+        setSortedCities([]); // Handle error state
+      }
+    };
+    fetchCities();
+  }, []);
   
   const handleDistanceChange = (distance: string) => {
     setSelectedDistances(prev => 
@@ -47,6 +68,19 @@ const RunFinderWizard: React.FC<RunFinderWizardProps> = ({ onComplete }) => {
         ? prev.filter(d => d !== distance) 
         : [...prev, distance]
     );
+  };
+
+  // Updated handler for multi-select cities
+  const handleCityChange = (city: string) => {
+    setSelectedCities(prev =>
+      prev.includes(city)
+        ? prev.filter(c => c !== city) // Remove city if already selected
+        : [...prev, city] // Add city if not selected
+    );
+  };
+
+  const handleAgeChange = (ageRange: string) => {
+    setAge(prev => prev === ageRange ? null : ageRange); // Toggle selection
   };
   
   const handleInclusionChange = (inclusion: string) => {
@@ -65,17 +99,26 @@ const RunFinderWizard: React.FC<RunFinderWizardProps> = ({ onComplete }) => {
     setStep(prev => prev - 1);
   };
   
-  const findRuns = () => {
+  const findRuns = async () => { // Make function async
+    // Add age to FilterCriteria if needed
     const criteria: FilterCriteria = {
-      eventType,
-      distances: selectedDistances,
-      city: location || undefined,
-      inclusions: selectedInclusions as any[]
+      eventType: eventType === "All" ? undefined : eventType, // Handle "All" case
+      distances: selectedDistances.length > 0 ? selectedDistances : undefined,
+      city: selectedCities.length > 0 ? selectedCities : undefined, // Use multi-select array
+      // Wrap age in an array if it exists, otherwise undefined
+      ageRange: age ? [age] : undefined, 
+      // Cast selectedInclusions to (keyof EventInclusions)[] if it has items
+      inclusions: selectedInclusions.length > 0 ? selectedInclusions as (keyof EventInclusions)[] : undefined 
     };
     
-    const matchedEvents = filterEvents(criteria);
-    onComplete(matchedEvents, criteria);
-    navigate('/results');
+    try {
+      const matchedEvents = await filterEvents(criteria); // Await the async function
+      onComplete(matchedEvents, criteria); // Assuming onComplete doesn't need to be async
+      navigate('/results');
+    } catch (error) {
+      console.error("Error finding runs:", error);
+      // Handle error appropriately, maybe show a message to the user
+    }
   };
   
   const renderStepContent = () => {
@@ -106,21 +149,18 @@ const RunFinderWizard: React.FC<RunFinderWizardProps> = ({ onComplete }) => {
               Select one or more distances you'd like to run:
             </p>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {["1K", "2K", "3K", "5K", "10K", "15K", "21.1K", "25K", "35K", "42.2K", "50K", "100K"].map((distance) => (
-                <div key={distance} className="flex items-center space-x-2">
-                  <Checkbox 
-                    id={`wizard-distance-${distance}`} 
-                    checked={selectedDistances.includes(distance)}
-                    onCheckedChange={() => handleDistanceChange(distance)}
-                  />
-                  <Label 
-                    htmlFor={`wizard-distance-${distance}`}
-                    className="cursor-pointer"
-                  >
-                    {distance}
-                  </Label>
-                </div>
+            {/* Use Buttons or Badges for bubbles */}
+            <div className="flex flex-wrap gap-2">
+              {["1K", "2K", "3K", "5K", "10K", "15K", "21.1K", "25K", "35K", "42.2K", "50K", "100K", "Other"].map((distance) => (
+                <Button
+                  key={distance}
+                  variant={selectedDistances.includes(distance) ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => handleDistanceChange(distance)}
+                  className="rounded-full"
+                >
+                  {distance}
+                </Button>
               ))}
             </div>
           </div>
@@ -183,17 +223,35 @@ const RunFinderWizard: React.FC<RunFinderWizardProps> = ({ onComplete }) => {
                 </RadioGroup>
               </div>
               
+              {/* City Selection Bubbles */}
               <div>
-                <Label htmlFor="wizard-location" className="text-sm text-gray-500">
-                  Preferred location (optional):
+                <Label className="text-sm text-gray-500">
+                  Preferred city (optional):
                 </Label>
-                <Input
-                  id="wizard-location"
-                  placeholder="Enter city name"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  className="mt-1"
-                />
+                {/* Added scrollable container */}
+                <div className="max-h-48 overflow-y-auto pr-2 mt-2 border rounded-md p-2"> 
+                  <div className="flex flex-wrap gap-2">
+                    {sortedCities.length > 0 ? (
+                      sortedCities.map(({ city }) => (
+                        <Button
+                          key={city}
+                          variant={selectedCities.includes(city) ? "default" : "outline"} // Check if city is in the array
+                          size="sm"
+                          onClick={() => handleCityChange(city)}
+                          className="rounded-full"
+                        >
+                          {city}
+                        </Button>
+                      ))
+                    ) : (
+                      <p className="text-sm text-gray-400">Loading cities...</p> 
+                    )}
+                  </div>
+                </div>
+                {/* Option to clear selection */}
+                 {selectedCities.length > 0 && (
+                   <Button variant="ghost" size="sm" onClick={() => setSelectedCities([])} className="text-xs text-gray-500 mt-1">Clear Cities</Button>
+                 )}
               </div>
             </div>
           </div>
@@ -210,20 +268,28 @@ const RunFinderWizard: React.FC<RunFinderWizardProps> = ({ onComplete }) => {
             </div>
             
             <div className="space-y-4">
+              {/* Age Selection Bubbles */}
               <div>
-                <Label htmlFor="wizard-age" className="text-sm text-gray-500">
-                  Your age (optional, for age-restricted events):
+                <Label className="text-sm text-gray-500">
+                  Your age group (optional):
                 </Label>
-                <Input
-                  id="wizard-age"
-                  type="number"
-                  placeholder="Enter your age"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  className="mt-1"
-                  min="1"
-                  max="120"
-                />
+                 <div className="flex flex-wrap gap-2 mt-2">
+                   {["Under 18", "18-30", "31-45", "46-60", "60+"].map((ageRange) => (
+                     <Button
+                       key={ageRange}
+                       variant={age === ageRange ? "default" : "outline"}
+                       size="sm"
+                       onClick={() => handleAgeChange(ageRange)}
+                       className="rounded-full"
+                     >
+                       {ageRange}
+                     </Button>
+                   ))}
+                   {/* Option to clear selection */}
+                   {age && (
+                     <Button variant="ghost" size="sm" onClick={() => setAge(null)} className="text-xs text-gray-500">Clear</Button>
+                   )}
+                 </div>
               </div>
               
               <div>

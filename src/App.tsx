@@ -9,6 +9,8 @@ import HomePage from "./pages/HomePage";
 import EventDetailPage from "./pages/EventDetailPage";
 import WizardPage from "./pages/WizardPage";
 import ResultsPage from "./pages/ResultsPage";
+import FAQPage from "./pages/FAQPage"; // Import the new FAQ page
+import SocialGenerator from "./pages/SocialGenerator";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +27,8 @@ const App = () => (
             <Route path="/event/:id" element={<EventDetailPage />} />
             <Route path="/wizard" element={<WizardPage />} />
             <Route path="/results" element={<ResultsPage />} />
+            <Route path="/faq" element={<FAQPage />} /> {/* Add route for FAQ page */}
+            <Route path="/social-generator" element={<SocialGenerator />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

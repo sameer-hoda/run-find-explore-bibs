@@ -1,18 +1,18 @@
 
 import React from "react";
-import { 
-  Calendar, 
-  MapPin, 
-  Info, 
-  Medal, 
-  Timer, 
-  Shirt, 
-  Clock, 
-  ShoppingBag, 
-  User, 
-  Check, 
-  X, 
-  ExternalLink, 
+import {
+  Calendar,
+  MapPin,
+  Info,
+  Medal,
+  Timer,
+  Shirt,
+  Clock,
+  ShoppingBag,
+  User,
+  Check,
+  X,
+  ExternalLink,
   FileBadge,
   Building,
   Phone
@@ -21,13 +21,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
 } from "@/components/ui/table";
 import { Event, formatEventDate, getLocationDisplay } from "@/services/eventService";
 
@@ -36,257 +36,175 @@ interface EventDetailsProps {
 }
 
 const EventDetails: React.FC<EventDetailsProps> = ({ event }) => {
-  const { 
-    event_name, 
-    event_date, 
-    location, 
-    event_type, 
-    categories, 
-    inclusions, 
-    event_description, 
-    organizer_info, 
-    event_url, 
-    registration_closes 
+  const {
+    event_name,
+    event_date,
+    location,
+    event_type,
+    categories,
+    inclusions,
+    event_description,
+    organizer_info,
+    event_url,
+    registration_closes
   } = event;
-  
+
   const formattedDate = formatEventDate(event_date);
   const locationDisplay = getLocationDisplay(location);
   const formattedClosingDate = formatEventDate(registration_closes);
-  
+
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <Badge 
+    <div className="space-y-8 max-w-5xl mx-auto">
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+        <div className="space-y-4">
+          <Badge
             variant={event_type === "Physical" ? "default" : "outline"}
-            className="mb-2"
+            className="mb-2 bg-slate-900 text-white hover:bg-slate-800 border-none"
           >
             {event_type}
           </Badge>
-          <h1 className="text-2xl md:text-3xl font-bold">{event_name}</h1>
-          
-          <div className="mt-2 space-y-2">
-            <div className="flex items-center text-gray-500">
-              <Calendar className="h-4 w-4 mr-2" />
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">{event_name}</h1>
+
+          <div className="flex flex-col gap-2 text-slate-500 font-medium text-base">
+            <div className="flex items-center">
+              <Calendar className="h-5 w-5 mr-3 text-[#FC4C02]" />
               <span>{formattedDate}</span>
             </div>
-            
+
             {locationDisplay !== "Location TBD" && (
-              <div className="flex items-center text-gray-500">
-                <MapPin className="h-4 w-4 mr-2" />
+              <div className="flex items-center">
+                <MapPin className="h-5 w-5 mr-3 text-[#FC4C02]" />
                 <span>{locationDisplay}</span>
               </div>
             )}
-            
+
             {registration_closes && (
-              <div className="flex items-center text-gray-500">
-                <Clock className="h-4 w-4 mr-2" />
+              <div className="flex items-center">
+                <Clock className="h-5 w-5 mr-3 text-[#FC4C02]" />
                 <span>Registration closes: {formattedClosingDate}</span>
               </div>
             )}
           </div>
         </div>
-        
-        <Button asChild size="lg" className="mt-4 md:mt-0">
+
+        <Button asChild size="lg" className="mt-4 md:mt-0 bg-[#FC4C02] hover:bg-[#E34400] text-white rounded-full px-8 py-6 text-lg font-bold shadow-lg shadow-orange-200/50 transition-all hover:scale-105">
           <a href={event_url} target="_blank" rel="noopener noreferrer">
-            Register <ExternalLink className="ml-2 h-4 w-4" />
+            Register Now <ExternalLink className="ml-2 h-5 w-5" />
           </a>
         </Button>
       </div>
-      
-      <Separator />
-      
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 space-y-8">
+
+      <Separator className="bg-slate-100" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div className="lg:col-span-2 space-y-10">
           {/* Description */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-xl flex items-center">
-                <Info className="h-5 w-5 mr-2" /> 
-                Event Description
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center">
+              <Info className="h-6 w-6 mr-2 text-slate-400" />
+              About the Event
+            </h2>
+            <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
               <p className="whitespace-pre-line">{event_description}</p>
-            </CardContent>
-          </Card>
-          
+            </div>
+          </section>
+
           {/* Categories */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-xl flex items-center">
-                <Timer className="h-5 w-5 mr-2" /> 
-                Categories
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center">
+              <Timer className="h-6 w-6 mr-2 text-slate-400" />
+              Race Categories
+            </h2>
+            <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
               <Table>
-                <TableHeader>
+                <TableHeader className="bg-slate-50">
                   <TableRow>
-                    <TableHead>Category</TableHead>
-                    <TableHead>Distance</TableHead>
-                    <TableHead>Timed</TableHead>
-                    <TableHead>Fee</TableHead>
-                    <TableHead>Age Restriction</TableHead>
+                    <TableHead className="font-bold text-slate-900">Category</TableHead>
+                    <TableHead className="font-bold text-slate-900">Distance</TableHead>
+                    <TableHead className="font-bold text-slate-900">Timed</TableHead>
+                    <TableHead className="font-bold text-slate-900">Fee</TableHead>
+                    <TableHead className="font-bold text-slate-900">Age Limit</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {categories.map((category, index) => (
-                    <TableRow key={index}>
-                      <TableCell className="font-medium">{category.name}</TableCell>
+                    <TableRow key={index} className="hover:bg-slate-50/50">
+                      <TableCell className="font-semibold text-slate-900">{category.name}</TableCell>
                       <TableCell>{category.distance}</TableCell>
                       <TableCell>
                         {category.is_timed ? (
-                          <Check className="h-4 w-4 text-green-500" />
+                          <Check className="h-5 w-5 text-green-500" />
                         ) : (
-                          <X className="h-4 w-4 text-red-500" />
+                          <X className="h-5 w-5 text-slate-300" />
                         )}
                       </TableCell>
                       <TableCell>
-                        {category.registration_fee 
-                          ? `₹${category.registration_fee}` 
-                          : "Details on registration"}
+                        {category.registration_fee
+                          ? `₹${category.registration_fee}`
+                          : "Check link"}
                       </TableCell>
                       <TableCell>
-                        {category.age_restriction || "No restrictions"}
+                        {category.age_restriction || "-"}
                       </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
-            </CardContent>
-          </Card>
+            </div>
+          </section>
         </div>
-        
-        <div className="space-y-6">
+
+        <div className="space-y-8">
           {/* Organizer */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center">
-                <Building className="h-5 w-5 mr-2" /> 
-                Organizer Information
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div>
-                <p className="font-medium">{organizer_info.name}</p>
-                {organizer_info.contact ? (
-                  <p className="text-gray-500 flex items-center mt-1">
-                    <Phone className="h-4 w-4 mr-2" />
-                    {organizer_info.contact}
-                  </p>
-                ) : (
-                  <p className="text-gray-500 mt-1">Contact info not available</p>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-          
-          {/* Inclusions */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center">
-                <Medal className="h-5 w-5 mr-2" /> 
-                Inclusions
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
-                <li className="flex items-center">
-                  {inclusions.t_shirt ? (
-                    <Check className="h-4 w-4 text-green-500 mr-2" />
-                  ) : (
-                    <X className="h-4 w-4 text-red-500 mr-2" />
-                  )}
-                  <span className="flex items-center">
-                    <Shirt className="h-4 w-4 mr-2" /> T-shirt
-                  </span>
-                </li>
-                <li className="flex items-center">
-                  {inclusions.medal ? (
-                    <Check className="h-4 w-4 text-green-500 mr-2" />
-                  ) : (
-                    <X className="h-4 w-4 text-red-500 mr-2" />
-                  )}
-                  <span className="flex items-center">
-                    <Medal className="h-4 w-4 mr-2" /> Medal
-                  </span>
-                </li>
-                <li className="flex items-center">
-                  {inclusions.timing_chip ? (
-                    <Check className="h-4 w-4 text-green-500 mr-2" />
-                  ) : (
-                    <X className="h-4 w-4 text-red-500 mr-2" />
-                  )}
-                  <span className="flex items-center">
-                    <Timer className="h-4 w-4 mr-2" /> Timing Chip
-                  </span>
-                </li>
-                <li className="flex items-center">
-                  {inclusions.bib ? (
-                    <Check className="h-4 w-4 text-green-500 mr-2" />
-                  ) : (
-                    <X className="h-4 w-4 text-red-500 mr-2" />
-                  )}
-                  <span className="flex items-center">
-                    <User className="h-4 w-4 mr-2" /> Bib
-                  </span>
-                </li>
-                <li className="flex items-center">
-                  {inclusions.refreshments ? (
-                    <Check className="h-4 w-4 text-green-500 mr-2" />
-                  ) : (
-                    <X className="h-4 w-4 text-red-500 mr-2" />
-                  )}
-                  <span className="flex items-center">
-                    <Clock className="h-4 w-4 mr-2" /> Refreshments
-                  </span>
-                </li>
-                <li className="flex items-center">
-                  {inclusions.e_certificate ? (
-                    <Check className="h-4 w-4 text-green-500 mr-2" />
-                  ) : (
-                    <X className="h-4 w-4 text-red-500 mr-2" />
-                  )}
-                  <span className="flex items-center">
-                    <FileBadge className="h-4 w-4 mr-2" /> E-certificate
-                  </span>
-                </li>
-                <li className="flex items-center">
-                  {inclusions.goodie_bag ? (
-                    <Check className="h-4 w-4 text-green-500 mr-2" />
-                  ) : (
-                    <X className="h-4 w-4 text-red-500 mr-2" />
-                  )}
-                  <span className="flex items-center">
-                    <ShoppingBag className="h-4 w-4 mr-2" /> Goodie Bag
-                  </span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-          
-          {/* Registration */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center">
-                <ExternalLink className="h-5 w-5 mr-2" /> 
-                Registration
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {registration_closes && (
-                <p className="text-sm">
-                  <span className="font-medium">Registration closes:</span> {formattedClosingDate}
+          <section className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+            <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center">
+              <Building className="h-5 w-5 mr-2 text-slate-400" />
+              Organizer
+            </h3>
+            <div className="space-y-2">
+              <p className="font-semibold text-slate-700">{organizer_info.name}</p>
+              {organizer_info.contact && (
+                <p className="text-slate-500 flex items-center text-sm">
+                  <Phone className="h-4 w-4 mr-2" />
+                  {organizer_info.contact}
                 </p>
               )}
-              <Button asChild className="w-full">
-                <a href={event_url} target="_blank" rel="noopener noreferrer">
-                  Register Now
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </section>
+
+          {/* Inclusions */}
+          <section>
+            <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center">
+              <Medal className="h-5 w-5 mr-2 text-slate-400" />
+              What's Included
+            </h3>
+            <div className="grid grid-cols-1 gap-3">
+              {[
+                { key: 't_shirt', label: 'T-shirt', icon: Shirt },
+                { key: 'medal', label: 'Medal', icon: Medal },
+                { key: 'timing_chip', label: 'Timing Chip', icon: Timer },
+                { key: 'bib', label: 'Bib', icon: User },
+                { key: 'refreshments', label: 'Refreshments', icon: Clock },
+                { key: 'e_certificate', label: 'E-certificate', icon: FileBadge },
+                { key: 'goodie_bag', label: 'Goodie Bag', icon: ShoppingBag },
+              ].map((item) => {
+                const isIncluded = inclusions[item.key as keyof typeof inclusions];
+                const Icon = item.icon;
+                return (
+                  <div key={item.key} className={`flex items-center p-3 rounded-xl border ${isIncluded ? 'bg-white border-slate-100 shadow-sm' : 'bg-slate-50 border-transparent opacity-50'}`}>
+                    {isIncluded ? (
+                      <Check className="h-5 w-5 text-green-500 mr-3 shrink-0" />
+                    ) : (
+                      <X className="h-5 w-5 text-slate-300 mr-3 shrink-0" />
+                    )}
+                    <span className={`flex items-center font-medium ${isIncluded ? 'text-slate-700' : 'text-slate-400'}`}>
+                      <Icon className="h-4 w-4 mr-2" /> {item.label}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
         </div>
       </div>
     </div>

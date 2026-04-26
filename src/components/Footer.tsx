@@ -1,80 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Footprints } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-100 py-12">
+    <footer className="fixed bottom-0 left-0 w-full bg-primary text-primary-foreground py-2 text-center text-sm z-50 shadow-md">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <div className="flex items-center">
-              <Footprints className="h-6 w-6 text-primary mr-2" />
-              <span className="font-bold text-lg">mynextbib.com</span>
-            </div>
-            <p className="text-gray-600 text-sm">
-              Helping runners find their next perfect race since 2025.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-gray-600 hover:text-primary text-sm">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/wizard" className="text-gray-600 hover:text-primary text-sm">
-                  Run Finder Wizard
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="text-gray-600 hover:text-primary text-sm">
-                  Browse Events
-                </Link>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-600 hover:text-primary text-sm">
-                  For Event Organizers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-primary text-sm">
-                  Training Plans
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-primary text-sm">
-                  Running Guides
-                </a>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold mb-4">Contact</h3>
-            <ul className="space-y-2">
-              <li className="text-gray-600 text-sm">
-                Email: info@mynextbib.com
-              </li>
-              <li className="text-gray-600 text-sm">
-                Phone: +91 1234567890
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-        <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} mynextbib.com. All rights reserved.</p>
-        </div>
+        <p>
+          Cant find an event, let me know :{" "}
+          <a
+            href="mailto:sameer.hoda@gmail.com?subject=Event%20Suggestion&body=Hi%20Sameer%2C%0A%0AI%20couldn't%20find%20the%20following%20event%20on%20mynextbib.com%3A%0A%0AEvent%20Name%3A%20%0AEvent%20Date%3A%20%0AEvent%20Location%3A%20%0AEvent%20Website%20(if%20any)%3A%20%0A%0AThanks%2C%0A[Your%20Name]"
+            className="underline hover:text-secondary"
+          >
+            📤
+          </a>
+        </p>
       </div>
     </footer>
   );

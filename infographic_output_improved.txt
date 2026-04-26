@@ -1,0 +1,26 @@
+🚀 Triggering Infographic Generation... (Event: IndianOil WNC Navy Half Marathon 2025)
+
+✅ SUCCESS!
+{
+  "event": {
+    "name": "IndianOil WNC Navy Half Marathon 2025",
+    "date": "Sunday, November 23rd, 2025",
+    "location": "South Mumbai (Start/Finish at OCS Chowk, near Azad Maidan/Cross Maidan)",
+    "categories": [
+      "21.1 km Aircraft Carrier Run (Half Marathon)",
+      "10K Destroyer Run",
+      "5K Frigate Run"
+    ],
+    "course_difficulty": "Generally flat with gentle slopes, offering a fast course suitable for personal bests. Out-and-back format through iconic South Mumbai.",
+    "atmosphere": "Expect a vibrant atmosphere charged with national pride, as the event celebrates Indian Navy Day. The presence of naval forces is prominent, from managing race logistics to handing out medals. Runners can often spot Navy choppers flying overhead, adding to the excitement, and live bands contribute to the festive mood, making it a truly unifying event for civilians and defense personnel alike.",
+    "swag_value": "Participants receive a premium moisture-wicking race-day T-shirt, a dazzling finisher's medal, a timing BIB (RFID enabled), a timing E-certificate, and a tastefully curated goodie bag. Post-race refreshments are also provided.",
+    "weather_expectations": "Scheduled for late November, Mumbai typically offers relatively pleasant weather for running, with temperatures ranging from a minimum of 24\u00b0C to a high of 31\u00b0C. Humidity is generally lower compared to other months, but it's still advisable to stay hydrated due to the potential for warmth as the race progresses.",
+    "why_run_this": "This marathon is a 'perfect tune-up and dress rehearsal' for runners aiming for January goals, such as the Tata Mumbai Marathon, sharing some common stretches. It offers a unique opportunity to 'run with the Navy,' fostering a sense of patriotism and camaraderie. The 'breathtaking route' through South Mumbai's heritage precincts, including the iconic Marine Drive ('Queen's Necklace'), is cited as one of the most scenic in the country, providing a 'flat, fast, and breezy course perfect for achieving a personal best.' It's more than just a race; it's a celebration of resilience and national spirit.",
+    "registration_status": "Open",
+    "website": "www.wncnavyhalfmarathon.com"
+  },
+  "infographic": {
+    "image_prompt": "A modern, clean, energetic, and 'Apple-esque' aesthetic photograph capturing the essence of the IndianOil WNC Navy Half Marathon 2025 in South Mumbai. The scene is set at dawn, with soft golden light illuminating the iconic Marine Drive ('Queen's Necklace') curving along the coast. A diverse group of joyful and determined runners, wearing premium moisture-wicking race-day T-shirts, are in motion, their strides fluid and powerful. In the background, elegant, historic South Mumbai heritage buildings line the route, while a sleek Indian Navy helicopter is subtly visible in the clear sky overhead, adding to the sense of national pride and excitement. A live band plays energetically on the sidelines, with spectators cheering enthusiastically. The overall vibe is one of exhilarating motion, camaraderie, patriotism, and a high-performance event, with a focus on vibrant colors, crisp details, and dynamic composition. The image should convey both the beauty of the route and the celebratory, unifying atmosphere.",
+    "caption": "Alright, fellow runners, let's talk about the IndianOil WNC Navy Half Marathon 2025! This isn't just another race; it's your absolute 'must-do' tune-up and dress rehearsal if you're eyeing those January marathon goals, especially the Tata Mumbai Marathon, sharing some crucial stretches. The vibe here? Unmatched. Imagine running with the Navy, feeling that surge of national pride, with choppers flying overhead and live bands fueling your every step \u2013 it\u2019s a truly unifying experience for civilians and defense personnel alike. \n\nNow for the real scoop on the course: it's generally flat with gentle slopes, making it incredibly fast and perfect for chasing that personal best. You'll tackle an out-and-back format, winding through South Mumbai's breathtaking heritage precincts, including the iconic Marine Drive \u2013 yes, the 'Queen's Necklace' stretch, one of the most scenic in the country. This course is built for speed, designed to help you fly.\n\nPro Tip: Scheduled for late November, Mumbai offers relatively pleasant running weather, but temperatures can climb from 24\u00b0C to 31\u00b0C as the race progresses. Hydration is key! Make sure you\u2019re fueling properly beforehand and taking advantage of every water station to maintain that pace. This flat, fast course is PB territory, so plan your negative split and go for it!\n\nRegistration is open! Don't miss out on this incredible opportunity to celebrate resilience and national spirit while bagging a new PB. Link in bio to sign up!"
+  }
+}

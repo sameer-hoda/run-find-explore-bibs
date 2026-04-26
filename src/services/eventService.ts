@@ -58,393 +58,124 @@ export interface Event {
   event_description: string;
   organizer_info: EventOrganizerInfo;
   event_url: string;
+  // Added source_file and original_event_identifier based on prd.txt structure
+  source_file?: string; 
+  original_event_identifier?: string;
 }
 
-// Mock events data
-export const events: Record<string, Event> = {
-  "unknown_event_-7327850053345349474": {
-    id: "unknown_event_-7327850053345349474",
-    event_name: "Pune Virtual Challenge",
-    event_date: null,
-    location: {
-      city: "Pune",
-      venue: null,
-      state: null
-    },
-    event_type: "Virtual",
-    distances: {
-      "1K": false,
-      "2K": false,
-      "3K": false,
-      "5K": true,
-      "10K": true,
-      "15K": false,
-      "21.1K": true,
-      "25K": false,
-      "35K": false,
-      "42.2K": true,
-      "50K": false,
-      "100K": false,
-      "other": false
-    },
-    categories: [
-      {
-        name: "5KM",
-        distance: "5K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "10KM",
-        distance: "10K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "21KM",
-        distance: "21.1K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "42KM",
-        distance: "42.2K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      }
-    ],
-    registration_closes: null,
-    inclusions: {
-      t_shirt: false,
-      medal: true,
-      timing_chip: false,
-      bib: false,
-      refreshments: false,
-      e_certificate: false,
-      goodie_bag: false
-    },
-    event_description: "Run / Walk / Jog / Cycle at your own Place, Gym, Treadmill or any other Marathon Event. Once your Challenge is done your Medal is sent by Courier. Run / Walk or Cycle at your own Place and share screenshot of Timing app on whatsapp number 8097712656.",
-    organizer_info: {
-      name: "Omega Events",
-      contact: "8097712656"
-    },
-    event_url: "https://www.townscript.com/e/pune-virtual-challenge-220201"
-  },
-  "unknown_event_5207798823041033372": {
-    id: "unknown_event_5207798823041033372",
-    event_name: "Vrukshathon - Half Marathon 2025",
-    event_date: "2025-06-01",
-    location: {
-      city: "Pune",
-      venue: "Police Ground Shivaji Nagar",
-      state: null
-    },
-    event_type: "Physical",
-    distances: {
-      "1K": false,
-      "2K": false,
-      "3K": true,
-      "5K": true,
-      "10K": true,
-      "15K": false,
-      "21.1K": true,
-      "25K": false,
-      "35K": false,
-      "42.2K": false,
-      "50K": false,
-      "100K": false,
-      "other": false
-    },
-    categories: [
-      {
-        name: "21k Half Marathon (Eco-Endurance - Competitive Run)",
-        distance: "21.1K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: "Participants must be at least 16 years of age"
-      },
-      {
-        name: "10k Run (The Green Sprint - Competitive Run)",
-        distance: "10K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: "Participants must be at least 16 years of age"
-      },
-      {
-        name: "5k Run (Nature's Dream Run)",
-        distance: "5K",
-        is_timed: false,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "3k Fun Walk (Kids & Senior Citizens)",
-        distance: "3K",
-        is_timed: false,
-        registration_fee: null,
-        age_restriction: null
-      }
-    ],
-    registration_closes: null,
-    inclusions: {
-      t_shirt: true,
-      medal: true,
-      timing_chip: true,
-      bib: true,
-      refreshments: true,
-      e_certificate: false,
-      goodie_bag: true
-    },
-    event_description: "Vrukshathon 2025 is a Half-Marathon, a premier event conceptualised and organised by FITNESS FIRST INDIA and the Pune Forest and Police Department. We aim to promote healthy lifestyles, spread environmental consciousness, and create a memorable running experience for all participants.",
-    organizer_info: {
-      name: "FITNESS FIRST INDIA and the Pune Forest and Police Department",
-      contact: null
-    },
-    event_url: "https://www.townscript.com/e/vrukshathon2025"
-  },
-  "unknown_event_-601324126198545053": {
-    id: "unknown_event_-601324126198545053",
-    event_name: "Major Dhyan Chand Virtual Marathon",
-    event_date: null,
-    location: {
-      city: null,
-      venue: null,
-      state: null
-    },
-    event_type: "Virtual",
-    distances: {
-      "1K": false,
-      "2K": false,
-      "3K": false,
-      "5K": true,
-      "10K": true,
-      "15K": false,
-      "21.1K": true,
-      "25K": false,
-      "35K": false,
-      "42.2K": true,
-      "50K": false,
-      "100K": false,
-      "other": false
-    },
-    categories: [
-      {
-        name: "5 km",
-        distance: "5K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "10 km",
-        distance: "10K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "21 km",
-        distance: "21.1K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "42 km",
-        distance: "42.2K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      }
-    ],
-    registration_closes: null,
-    inclusions: {
-      t_shirt: false,
-      medal: true,
-      timing_chip: false,
-      bib: false,
-      refreshments: false,
-      e_certificate: false,
-      goodie_bag: false
-    },
-    event_description: "Get \"Major Dhyan Chand Tribute Medal\" by Courier. Distance Categories - 5 km / 10 km / 21 km / 42 km Run is to Promote Fitness and Legacy of Major Dhyan Chand.",
-    organizer_info: {
-      name: "Omega Events",
-      contact: "8097712656"
-    },
-    event_url: "https://www.townscript.com/e/copy-of-major-dhyan-chand-312111"
-  },
-  "unknown_event_4155110914854834589": {
-    id: "unknown_event_4155110914854834589",
-    event_name: "Hercules Virtual Marathon / Cyclothon",
-    event_date: null,
-    location: {
-      city: null,
-      venue: null,
-      state: null
-    },
-    event_type: "Virtual",
-    distances: {
-      "1K": false,
-      "2K": false,
-      "3K": false,
-      "5K": true,
-      "10K": true,
-      "15K": false,
-      "21.1K": true,
-      "25K": false,
-      "35K": false,
-      "42.2K": true,
-      "50K": false,
-      "100K": false,
-      "other": false
-    },
-    categories: [
-      {
-        name: "5 KM",
-        distance: "5K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "10 KM",
-        distance: "10K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "21 KM",
-        distance: "21.1K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "42 KM",
-        distance: "42.2K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      }
-    ],
-    registration_closes: null,
-    inclusions: {
-      t_shirt: false,
-      medal: true,
-      timing_chip: false,
-      bib: false,
-      refreshments: false,
-      e_certificate: false,
-      goodie_bag: false
-    },
-    event_description: "Run / Walk / Jog / Cycle at your own Place, Gym, Treadmill or any other Marathon Event. Get Medal by Courier. Run is to promote Fitness.",
-    organizer_info: {
-      name: "Omega Events",
-      contact: "8097712656"
-    },
-    event_url: "https://www.townscript.com/e/virtual-marathon6"
-  },
-  "unknown_event_-7322174064500020992": {
-    id: "unknown_event_-7322174064500020992",
-    event_name: "Unicorn Virtual Marathon",
-    event_date: null,
-    location: {
-      city: null,
-      venue: null,
-      state: null
-    },
-    event_type: "Virtual",
-    distances: {
-      "1K": false,
-      "2K": false,
-      "3K": false,
-      "5K": true,
-      "10K": true,
-      "15K": false,
-      "21.1K": true,
-      "25K": false,
-      "35K": false,
-      "42.2K": true,
-      "50K": false,
-      "100K": false,
-      "other": false
-    },
-    categories: [
-      {
-        name: "5 KM",
-        distance: "5K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "10 KM",
-        distance: "10K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "21 KM",
-        distance: "21.1K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      },
-      {
-        name: "42 KM",
-        distance: "42.2K",
-        is_timed: true,
-        registration_fee: null,
-        age_restriction: null
-      }
-    ],
-    registration_closes: null,
-    inclusions: {
-      t_shirt: false,
-      medal: false,
-      timing_chip: false,
-      bib: false,
-      refreshments: false,
-      e_certificate: false,
-      goodie_bag: false
-    },
-    event_description: "Trophy for all Participants. Categories - 5 KM / 10 KM / 21 KM / 42 KM (Distance can be completed in one day or in multiple days as per your practice) You can do Walking, Running or Cycling. Trophy will have Your Name and Distance Covered. Once your Challenge is done your Trophy is sent by Courier. Trophy Size - 22 cm.",
-    organizer_info: {
-      name: "Omega Events",
-      contact: "8097712656"
-    },
-    event_url: "https://www.townscript.com/e/unicorn-challenge-get-trophy-by-courier-443023"
+// --- Removed Mock events data ---
+
+// Function to create a URL-friendly slug from a string
+export const slugify = (text: string | null | undefined): string => {
+  if (!text) {
+    return '';
   }
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
 };
 
-// Get all events
-export const getAllEvents = (): Event[] => {
+// Cache for fetched events
+let cachedEvents: Record<string, Event> | null = null;
+let fetchPromise: Promise<Record<string, Event>> | null = null;
+
+// Fetch events data from prd.txt
+const fetchEvents = async (): Promise<Record<string, Event>> => {
+  if (cachedEvents) {
+    return cachedEvents;
+  }
+  if (fetchPromise) {
+    return fetchPromise;
+  }
+
+  fetchPromise = (async () => {
+    try {
+      const response = await fetch('/prd.txt');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const textData = await response.text();
+      console.log("Fetched prd.txt content:", textData.substring(0, 500));
+      const data: Record<string, Omit<Event, 'id'>> = JSON.parse(textData);
+      
+      // Add the id property to each event object
+      const eventsWithId: Record<string, Event> = {};
+      for (const key in data) {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+          const event = data[key];
+          // Use the original key for the id, which is guaranteed to be unique
+          const slugId = slugify(event.event_name); // Keep slug for URL generation if needed elsewhere
+          eventsWithId[key] = { ...event, id: key }; // Use the unique key as the primary ID
+        }
+      }
+      
+      cachedEvents = eventsWithId;
+      fetchPromise = null; // Clear promise after success
+      console.log("Events loaded successfully:", Object.keys(cachedEvents).length);
+      return cachedEvents;
+    } catch (error) {
+      console.error("Failed to fetch or parse events:", error);
+      fetchPromise = null; // Clear promise on error
+      cachedEvents = {}; // Set to empty object on error to prevent retries? Or handle differently?
+      return {}; // Return empty object or throw error?
+    }
+  })();
+
+  return fetchPromise;
+};
+
+
+// Get all events (now async)
+export const getAllEvents = async (): Promise<Event[]> => {
+  const events = await fetchEvents();
   return Object.values(events);
 };
 
-// Get event by ID
-export const getEventById = (id: string): Event | undefined => {
-  return events[id];
+// Get event by ID (now async)
+export const getEventById = async (id: string): Promise<Event | undefined> => {
+  const events = await getAllEvents(); // Use getAllEvents to get the array
+  // Find the event by the slugified id
+  return events.find(event => event.id === id);
 };
 
 // Filter events based on criteria
 export interface FilterCriteria {
   eventType?: "Physical" | "Virtual" | "All";
   distances?: string[];
-  city?: string;
+  city?: string[]; // Changed to array
   inclusions?: (keyof EventInclusions)[];
   searchTerm?: string;
+  ageRange?: string[]; // Changed to array
 }
 
-export const filterEvents = (criteria: FilterCriteria): Event[] => {
-  let filteredEvents = getAllEvents();
+// Filter events based on criteria (now async)
+export const filterEvents = async (criteria: FilterCriteria): Promise<Event[]> => {
+  let allEvents = await getAllEvents(); // Await the async fetch
+
+  // Filter out past events first
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set time to the beginning of the day for accurate comparison
+
+  let filteredEvents = allEvents.filter(event => {
+    if (!event.event_date) return true; // Keep events with no date for now, or decide how to handle them
+    
+    // Clean the date string: remove ordinal suffixes (st, nd, rd, th)
+    const cleanedDateString = event.event_date.replace(/(\d+)(st|nd|rd|th)/, '$1').split(',')[0];
+    
+    try {
+      const eventDate = new Date(cleanedDateString); // Use the cleaned string
+      // Check if eventDate is valid before comparing
+      return !isNaN(eventDate.getTime()) && eventDate >= today;
+    } catch (e) {
+      console.error(`Invalid date format for event ${event.id}: ${event.event_date}`);
+      return false; // Exclude events with invalid dates
+    }
+  });
 
   // Filter by event type
   if (criteria.eventType && criteria.eventType !== "All") {
@@ -462,10 +193,10 @@ export const filterEvents = (criteria: FilterCriteria): Event[] => {
     });
   }
 
-  // Filter by city
-  if (criteria.city) {
+  // Filter by city (multiple)
+  if (criteria.city && criteria.city.length > 0) {
     filteredEvents = filteredEvents.filter(
-      (event) => event.location.city === criteria.city
+      (event) => event.location.city && criteria.city!.includes(event.location.city)
     );
   }
 
@@ -491,23 +222,96 @@ export const filterEvents = (criteria: FilterCriteria): Event[] => {
     );
   }
 
+  // Filter by age range (Placeholder - requires specific logic based on age_restriction format)
+  if (criteria.ageRange && criteria.ageRange.length > 0) {
+    // Example: Assume ageRange is ["18-34", "35-49"] and age_restriction is "18+" or "Open to all"
+    // You'll need to parse criteria.ageRange and compare against event.categories[*].age_restriction
+    console.warn("Age range filtering not fully implemented yet. Checking against multiple selections.");
+    // filteredEvents = filteredEvents.filter(event => checkAgeRange(event, criteria.ageRange)); // Pass array
+  }
+
+  // 3. Sort events chronologically (newest first)
+  filteredEvents.sort((a, b) => {
+    // Clean date strings before parsing for sorting
+    const cleanDateA = a.event_date ? a.event_date.replace(/(\d+)(st|nd|rd|th)/, '$1') : null;
+    const cleanDateB = b.event_date ? b.event_date.replace(/(\d+)(st|nd|rd|th)/, '$1') : null;
+
+    const dateA = cleanDateA ? new Date(cleanDateA).getTime() : Infinity; // Place events without dates/invalid dates at the end
+    const dateB = cleanDateB ? new Date(cleanDateB).getTime() : Infinity;
+
+    // Handle potential NaN from invalid dates after cleaning (though cleaning should help)
+    const timeA = isNaN(dateA) ? Infinity : dateA;
+    const timeB = isNaN(dateB) ? Infinity : dateB;
+    
+    if (timeA === Infinity && timeB === Infinity) return 0; // Keep original order if both have no/invalid date
+    if (timeA === Infinity) return 1; // a goes after b
+    if (timeB === Infinity) return -1; // b goes after a
+
+    return timeA - timeB; // Sort ascending (closest date first)
+  });
+
+
   return filteredEvents;
 };
 
-// Get unique cities from all events
-export const getUniqueCities = (): string[] => {
-  const cities = getAllEvents()
-    .map((event) => event.location.city)
-    .filter((city): city is string => city !== null);
+// Get unique cities from all events, sorted by event count (now async)
+export const getUniqueCities = async (): Promise<string[]> => {
+  const allEvents = await getAllEvents(); // Await the async fetch
   
-  return Array.from(new Set(cities));
+  // Count occurrences of each city
+  const cityCounts: Record<string, number> = {};
+  allEvents.forEach((event) => {
+    if (event.location.city) {
+      cityCounts[event.location.city] = (cityCounts[event.location.city] || 0) + 1;
+    }
+  });
+
+  // Get unique city names
+  const uniqueCities = Object.keys(cityCounts);
+
+  // Sort cities by count (descending)
+  uniqueCities.sort((a, b) => cityCounts[b] - cityCounts[a]);
+
+  return uniqueCities;
 };
+
+// Get unique cities with counts, sorted by count (now async)
+export const getCitiesWithCounts = async (): Promise<{ city: string; count: number }[]> => {
+  const allEvents = await getAllEvents(); // Await the async fetch
+  
+  // Count occurrences of each city
+  const cityCounts: Record<string, number> = {};
+  allEvents.forEach((event) => {
+    if (event.location.city) {
+      cityCounts[event.location.city] = (cityCounts[event.location.city] || 0) + 1;
+    }
+  });
+
+  // Convert to array of objects
+  const citiesWithCounts = Object.entries(cityCounts).map(([city, count]) => ({ city, count }));
+
+  // Sort cities by count (descending)
+  citiesWithCounts.sort((a, b) => b.count - a.count);
+
+  return citiesWithCounts;
+};
+
 
 // Format date or return placeholder
 export const formatEventDate = (dateString: string | null): string => {
   if (!dateString) return "Date TBD";
   
-  const date = new Date(dateString);
+  // Clean the date string: remove ordinal suffixes (st, nd, rd, th) and time part
+  const cleanedDateString = dateString.replace(/(\d+)(st|nd|rd|th)/, '$1').split(',')[0];
+  
+  const date = new Date(cleanedDateString); // Use the cleaned string
+
+  // Check if the date is valid after parsing
+  if (isNaN(date.getTime())) {
+    console.error(`Invalid date format encountered in formatEventDate: ${dateString}`);
+    return "Invalid Date"; 
+  }
+
   return date.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
