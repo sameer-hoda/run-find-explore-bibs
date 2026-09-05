@@ -59,6 +59,14 @@ run-find-explore-bibs/
 - Past event pages stay `200` but carry `X-Robots-Tag: noindex, follow` (Express middleware on the server, not in this repo).
 - Canonicals and sitemap URLs use trailing slashes to match served pages.
 
+## System map
+
+The whole stack — pipeline, serving, analytics, SEO loop — as an interactive map (private, same login as the traffic dashboards): [mynextbib.com/tracker/](https://mynextbib.com/tracker/)
+
+![MyNextBib system map](docs/architecture-map.png)
+
+Generated with [Archify](https://github.com/tt-a1i/archify) from a typed architecture spec; re-render on big infra changes and replace both the hosted page and this image.
+
 ## Deployment
 
 Homepage → `timeline/README.md` flow. Event pages/assets → build, then rsync `dist/` **excluding** `index.html`, `prd.json`, `prd.txt`:
