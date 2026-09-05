@@ -28,6 +28,10 @@ const slugify = (text: string | null | undefined): string => {
 // Read events data from prd.txt to generate routes for prerendering
 const eventsData = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'public/prd.txt'), 'utf-8'));
 const eventRoutes = Object.values(eventsData).map((event: any) => `/event/${slugify(event.event_name)}`);
+// Snapshot the data as JSON for the prerender script: prerender.tsx is bundled
+// for the browser (fs/path are externalized stubs there), so it cannot read
+// files itself and must import this generated module instead.
+fs.writeFileSync(path.resolve(__dirname, 'src/prerender-data.json'), JSON.stringify(eventsData));
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -54,7 +58,7 @@ export default defineConfig({
     vitePrerenderPlugin({
       renderTarget: '#root',
       prerenderScript: path.resolve(__dirname, 'src/prerender.tsx'),
-      additionalPrerenderRoutes: eventRoutes,
+      additionalPrerenderRoutes: ['/', '/faq', '/wizard', '/results', ...eventRoutes],
     })
   ],
   resolve: {

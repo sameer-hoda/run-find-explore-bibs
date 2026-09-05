@@ -20,9 +20,24 @@ import {
 
 const HomePage: React.FC = () => {
   const { setFilteredEvents, setFilterCriteria } = useEventContext();
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [cities, setCities] = useState<string[]>([]);
+  // SSR seed: prerender.tsx sets __PRD_EVENTS__ before renderToString so the
+  // homepage ships with content (SEO) instead of an empty shell.
+  const getSeedEvents = (): Event[] | null => {
+    const g = (globalThis as unknown as Record<string, unknown>).__PRD_EVENTS__;
+    return Array.isArray(g) ? (g as Event[]) : null;
+  };
+  const [events, setEvents] = useState<Event[]>(() => getSeedEvents() ?? []);
+  const [loading, setLoading] = useState<boolean>(() => getSeedEvents() === null);
+  const [cities, setCities] = useState<string[]>(() => {
+    const seed = getSeedEvents();
+    if (!seed) return [];
+    const counts: Record<string, number> = {};
+    seed.forEach((e) => {
+      const city = (e.location as unknown as { city?: string } | null)?.city;
+      if (city) counts[city] = (counts[city] || 0) + 1;
+    });
+    return Object.keys(counts);
+  });
 
   // Local state for the new selectors
   const [selectedCity, setSelectedCity] = useState<string>("");

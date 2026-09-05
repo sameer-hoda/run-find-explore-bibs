@@ -15,8 +15,9 @@ import WizardPage from './pages/WizardPage';
 import ResultsPage from './pages/ResultsPage';
 import FAQPage from './pages/FAQPage';
 import NotFound from './pages/NotFound';
-import fs from 'fs';
-import path from 'path';
+// Event data snapshot written by vite.config.ts at build time (this file is
+// bundled for the browser, so fs/path are unavailable here).
+import eventsSnapshot from './prerender-data.json';
 
 // Types
 interface PrerenderData {
@@ -63,20 +64,9 @@ const slugify = (text: string | null | undefined): string => {
         .replace(/-+$/, '');
 };
 
-// Load events data from prd.txt (synchronous for SSR)
-let eventsData: Record<string, EventData> | null = null;
+// Event data for SSR, from the build-time snapshot (see vite.config.ts).
 const loadEvents = (): Record<string, EventData> => {
-    if (eventsData) return eventsData;
-
-    try {
-        const prdPath = path.resolve(process.cwd(), 'public/prd.txt');
-        const content = fs.readFileSync(prdPath, 'utf-8');
-        eventsData = JSON.parse(content);
-        return eventsData!;
-    } catch (error) {
-        console.error('Failed to load events for prerender:', error);
-        return {};
-    }
+    return eventsSnapshot as unknown as Record<string, EventData>;
 };
 
 // Find event by slug
@@ -129,8 +119,12 @@ export async function prerender(data: PrerenderData): Promise<PrerenderResult> {
     // Create helmet context
     const helmetContext = {};
 
+    // Seed event data for SSR (HomePage reads this for its initial state)
+    (globalThis as unknown as Record<string, unknown>).__PRD_EVENTS__ =
+      Object.values(loadEvents());
     // Render the app to string
     const html = renderToString(<ServerApp url={url} helmetContext={helmetContext} />);
+    delete (globalThis as unknown as Record<string, unknown>).__PRD_EVENTS__;
 
     // Build head elements based on the URL
     const elements = new Set<{ type: string; props: Record<string, string> }>();
