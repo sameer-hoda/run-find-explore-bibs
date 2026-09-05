@@ -1,128 +1,77 @@
-# MyNextBib.com — Frontend
+# mynextbib.com — frontend
 
-> React + Vite + TypeScript frontend for [mynextbib.com](https://mynextbib.com), India's premier running and sports event discovery platform.
+> India's running-event calendar — marathons, half marathons, 10Ks and 5Ks across 100+ cities. Live at [mynextbib.com](https://mynextbib.com).
 
----
+## Two frontends, one site — read this first
 
-## Overview
+| Surface | Source | Deploys to |
+|---|---|---|
+| **Homepage** (what visitors see) | `timeline/v2-timeline.html` — single-file vanilla timeline, no build step | `dist/index.html` **and** `dist/timeline.html` via `timeline/README.md` flow |
+| **Event pages + SPA fallback** | `src/` — React + Vite + TypeScript app | `dist/event/*` + `dist/assets/*` via `npm run build` + selective rsync |
 
-This is the production frontend for MyNextBib. It consumes processed event data to let users search, filter, and explore running events across India. Built for speed, SEO, and mobile-first experiences.
+These two share the domain but ship independently. The golden rule, learned the hard way (2026-09-05): **never rsync a React `dist/` over `index.html`** — it serves the old design. React builds ship event pages and assets only.
 
----
+## The homepage
 
-## Features
+Month-grouped event timeline: sticky month rail (desktop) / chips (mobile), city + distance + date pill filters, debounced search with ⌘K, custom sort, event detail modal with registration CTA, skeleton loading state, Lenis smooth scroll, warm ember theme. Cards are prerendered into the HTML at deploy time, so crawlers and no-JS visitors get full content and first paint is instant.
 
-- **Event Search & Discovery** — Full-text search with instant results.
-- **Smart Filters** — Filter by city, distance (5K · 10K · Half Marathon · Marathon), and event type.
-- **Event Detail Pages** — Rich pages with registration links, dates, locations, and descriptions.
-- **SEO Ready** — Server-side meta-tag injection, sitemap generation, structured data, and prerendered HTML.
-- **Responsive Design** — Optimized for mobile, tablet, and desktop.
-- **Newsletter Signup** — Email subscription component for event alerts.
-- **Social Sharing** — Open Graph images and Twitter cards for every event.
+Tracking is built in: PostHog snippet + explicit events (`city_filter`, `distance_filter`, `sort_change`, `event_search`, `event_view`, `registration_click`) plus GA. See `timeline/README.md` for the deploy flow.
 
----
+## The React app
 
-## Tech Stack
+Event detail pages (`/event/<slug>/`) with SEO meta injection, keyword titles, Event JSON-LD, canonicals — plus FAQ, wizard, results and must-do routes. Custom PostHog events live in `src/lib/analytics.ts` (`registration_click`, `city_filter`, `distance_filter`, `newsletter_signup`, `wizard_complete`).
 
-- **React 19** — UI framework
-- **TypeScript** — Type safety
-- **Vite** — Lightning-fast builds
-- **Tailwind CSS** — Utility-first styling
-- **shadcn/ui** — Accessible component primitives
-- **Lucide React** — Icon library
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm or bun
-
-### Install
+Data quirk worth knowing: `src/prerender.tsx` is browser-bundled, so it can't read files — `vite.config.ts` snapshots `public/prd.txt` to `src/prerender-data.json` (gitignored) at build time, and `HomePage` seeds its initial state from it. If a rebuild ever ships a ~12KB shell `index.html`, that seed broke — don't deploy.
 
 ```bash
 git clone https://github.com/sameer-hoda/run-find-explore-bibs.git
 cd run-find-explore-bibs
-npm install
+npm install          # needs vite-plugin-static-copy@2 (Vite 5); v3 requires Vite 6+
+cp .env.example .env # if present
+npm run dev          # http://localhost:8080 (API proxied to :3001)
+npm run build        # sitemap → vite → meta inject → dist/
+npx tsc --noEmit     # typecheck
 ```
 
-### Environment
+## Project structure
 
-```bash
-cp .env.example .env
-# Fill in real API keys (Airtable, OpenAI, etc.)
-```
-
-### Run Development Server
-
-```bash
-npm run dev
-```
-
-Visit `http://localhost:5173`.
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-Static output goes to `dist/`, ready for deployment to AWS EC2 / Nginx.
-
----
-
-## Project Structure
-
-```
+```text
 run-find-explore-bibs/
-├── public/                 # Static assets (favicons, banners, sitemap)
+├── timeline/               # LIVE HOMEPAGE source (vanilla, no build)
+│   ├── v2-timeline.html    # edit this
+│   ├── build_prerender.py  # bakes event cards into the HTML
+│   └── README.md           # deploy flow
+├── public/                 # static assets + prd.txt (event data snapshot)
 ├── src/
-│   ├── components/         # Reusable UI components
-│   ├── pages/              # Route-level pages (Home, Event Detail, FAQ, etc.)
-│   ├── services/           # API & data services
-│   ├── server/             # Small backend utilities (subscriptions, infographics)
-│   ├── App.tsx             # Root router
-│   └── main.tsx            # Entry point
-├── index.html              # HTML template with injected meta tags
-├── vite.config.ts          # Vite configuration
-├── tailwind.config.ts      # Tailwind theme
-└── package.json
+│   ├── components/         # EventCard, EventDetails, City/DistanceSelector, …
+│   ├── pages/              # Home, EventDetail, FAQ, Wizard, Results
+│   ├── services/           # eventService (loads /prd.txt), slugify
+│   ├── lib/analytics.ts    # PostHog trackEvent() wrapper
+│   └── prerender.tsx       # SSR entry (reads prerender-data.json snapshot)
+├── index.html              # template (PostHog snippet lives here)
+├── generate-sitemap.cjs    # future events only, trailing-slash URLs
+└── inject-meta-tags.cjs    # per-event title/description/canonical/OG
 ```
 
----
+## SEO essentials
 
-## SEO & Performance
-
-- **Meta Tags** — `inject-meta-tags.cjs` injects dynamic meta tags per route at build time.
-- **Sitemap** — `generate-sitemap.cjs` builds a comprehensive `sitemap.xml` for search engines.
-- **Prerender** — `src/prerender.tsx` generates static HTML for key routes.
-- **Structured Data** — JSON-LD event schemas for Google rich results.
-
----
+- Sitemap = static routes + future events only, `lastmod` = build day.
+- Past event pages stay `200` but carry `X-Robots-Tag: noindex, follow` (Express middleware on the server, not in this repo).
+- Canonicals and sitemap URLs use trailing slashes to match served pages.
 
 ## Deployment
 
-This repo is deployed to an AWS EC2 instance running Nginx. The build artifacts in `dist/` are synced via `rsync` from the parent staging repository:
+Homepage → `timeline/README.md` flow. Event pages/assets → build, then rsync `dist/` **excluding** `index.html`, `prd.json`, `prd.txt`:
 
 ```bash
-# Run from the parent staging repo
-./deploy_remote.sh
+rsync -av --exclude index.html --exclude prd.json --exclude prd.txt \
+  -e "ssh -i ~/.ssh/mnb_deploy" dist/ ec2-user@3.25.91.141:~/mynextbib_v3/dist/
 ```
 
-See [mynextbib-staging](https://github.com/sameer-hoda/mynextbib-staging) for the full deployment pipeline.
+Server runbook, dashboards, credentials map: `MAINTENANCE.md` in the local ops folder (not in this repo).
 
----
-
-## Related Repositories
+## Related
 
 | Repo | Purpose |
-|------|---------|
-| [mynextbib-staging](https://github.com/sameer-hoda/mynextbib-staging) | Scrapers, automation, and deployment scripts |
-
----
-
-## License
-
-Private / All rights reserved. This codebase is proprietary to MyNextBib.
+|---|---|
+| [mynextbib-staging](https://github.com/sameer-hoda/mynextbib-staging) | Aggregation pipeline powering the event data |

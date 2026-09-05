@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="icon" type="image/png" href="./logo.png"/>
+<link rel="apple-touch-icon" href="./logo.png"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-30W1KT0CQE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-30W1KT0CQE');
+</script>
+<!-- PostHog behavior analytics (pageviews, clicks, replays) -->
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="El Rl Pl Al Ll init iu ru Xl tu au fa eu uu Jl cu fu pu capture getExtension nu Ml yu calculateEventProperties mu register register_once register_for_session unregister unregister_for_session ku Yl bu getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Su identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset xu shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty vu createPersonProfile setInternalOrTestUser wu Dl $l opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing hu debug pa ns getPageViewId captureTraceFeedback captureTraceMetric Vl".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_tAm7RQdXxuTZ5TyPqBSLqdUrPdMQk9dqSHJqtRnecMM7', {
+        api_host: 'https://us.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'identified_only',
+    });
+</script>
+<title>MyNextBib — India Running Events Calendar | Marathons, Half Marathons, 10K Runs</title>
+<meta name="description" content="Find upcoming running events across India — marathons, half marathons, 10K and 5K runs in Bengaluru, Mumbai, Delhi, Hyderabad and 100+ cities. Dates, distances, prices."/>
+<link rel="canonical" href="https://mynextbib.com/"/>
+<meta name="theme-color" content="#FDF8F1"/>
+<meta property="og:title" content="MyNextBib — India Running Events Calendar"/>
+<meta property="og:description" content="Marathons, half marathons, 10K and 5K runs across 100+ Indian cities. Dates, distances, prices — find your next run."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://mynextbib.com/"/>
+<meta property="og:image" content="https://mynextbib.com/logo.png"/>
+<meta property="og:site_name" content="mynextbib.com"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MyNextBib — India Running Events Calendar"/>
+<meta name="twitter:description" content="Marathons, half marathons, 10K and 5K runs across 100+ Indian cities."/>
+<meta name="twitter:image" content="https://mynextbib.com/logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"Organization","name":"mynextbib.com","url":"https://mynextbib.com/","logo":"https://mynextbib.com/logo.png"},
+  {"@type":"WebSite","name":"MyNextBib","url":"https://mynextbib.com/","description":"India running events calendar — marathons, half marathons, 10K and 5K runs."}
+]}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://unpkg.com/lucide@latest"></script>
+<script defer src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','system-ui','sans-serif'],mono:['JetBrains Mono','monospace']},colors:{paper:'#FDF8F1',paper2:'#F9F0E4',ink:'#1C1917',accent:'#C2410C',accentdeep:'#9A3412',accentsoft:'#FFF3E8',accentline:'#F0C9A3'},boxShadow:{soft:'0 1px 3px rgba(0,0,0,.06)',lift:'0 8px 24px rgba(154,52,18,.10)'}}}}
+</script>
+<style>
+*{ -webkit-tap-highlight-color:transparent}
+html{scroll-behavior:auto}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lucide{stroke-width:1.75}
+body{overflow-x:clip;letter-spacing:-0.011em}
+.font-mono{letter-spacing:0}
+.hide-scrollbar{scrollbar-width:none;-ms-overflow-style:none}
+.hide-scrollbar::-webkit-scrollbar{display:none}
+.pill{transition:all 140ms ease}
+.card{transition:border-color 150ms ease,box-shadow 150ms ease,transform 150ms ease}
+.card:hover{transform:translateY(-1px)}
+.card:active{transform:translateY(0)}
+.fade-l,.fade-r{pointer-events:none;position:absolute;top:0;bottom:0;width:28px;z-index:2}
+.fade-l{left:0;background:linear-gradient(to right,#FDF8F1,rgba(253,248,241,0))}
+.fade-r{right:0;background:linear-gradient(to left,#FDF8F1,rgba(253,248,241,0))}
+.clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.animate-in{animation:in 220ms ease both}
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
+.reveal.visible{opacity:1;transform:none}
+.skel{background:#F1E8D9;border-radius:6px;animation:skpulse 1.6s ease-in-out infinite}
+@keyframes skpulse{0%,100%{opacity:1}50%{opacity:.45}}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.animate-in{animation:none}.cta-hue{animation:none}#drawerPanel{transition:none}}
+.month-link{transition:all 150ms ease}
+.month-link[data-active="true"]{background:#C2410C;color:#fff;border-color:#C2410C}
+.month-link[data-active="true"] .mcount{color:#FED7AA}
+.spine::before{content:"";position:absolute;left:27px;top:8px;bottom:-8px;width:1px;background:#F0DCC8}
+.month-sec:last-child .spine::before{display:none}
+@media (max-width:1023px){.spine::before{left:19px}}
+@media (pointer:coarse){
+  .pill{min-height:34px}
+  .datePill{min-height:30px}
+  .month-link{min-height:34px}
+}
+@media (max-width:768px){
+  input,select{font-size:16px !important}
+}
+@media (max-width:767px){
+  #filterRows .pill{height:24px;font-size:12px;padding-left:10px;padding-right:10px;gap:4px}
+  #filterRows .datePill{height:20px;font-size:11px;padding-left:10px;padding-right:10px}
+  #filterRows .flabel{font-size:10px}
+  #filterRows #activeCount{font-size:11px}
+  #filterBar #searchMobile{height:36px}
+  #filterBar #sortBtn{height:24px;font-size:11px}
+  #filterBar #monthRailM .month-link{height:24px;font-size:11px}
+  #filterBar #monthRailM{gap:4px}
+  #filterBar #cityRow,#filterBar #distRow{gap:4px}
+}
+#drawerBg{transition:opacity .3s ease}
+#drawerPanel{transition:opacity .34s cubic-bezier(.32,.72,.35,1),transform .34s cubic-bezier(.32,.72,.35,1);transform:translateY(28px) scale(.98)}
+@media (min-width:640px){#drawerPanel{transform:translateY(16px) scale(.97)}}
+#drawer.open #drawerBg{opacity:1 !important}
+#drawer.open #drawerPanel{opacity:1 !important;transform:none !important}
+.cta-hue{animation:huepulse 3.2s ease-in-out infinite}
+@keyframes huepulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.9;transform:scale(1.045)}}
+.dpill{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.015em;line-height:1;white-space:nowrap;font-variant-numeric:tabular-nums;border:1px solid transparent;flex-shrink:0}
+.dpill-dim{background:#F4F4F5;border-color:#E7E5E4;color:#3F3F46}
+.dpill-hot{background:#C2410C;border-color:#C2410C;color:#fff}
+.dpill-ghost{background:transparent;border-color:#E7E5E4;color:#A1A1AA}
+.dpill-lg{height:28px;padding:0 12px;font-size:12.5px}
+</style>
+</head>
+<body class="bg-paper text-ink antialiased selection:bg-accent selection:text-white">
+
+<!-- scroll progress -->
+<div class="fixed top-0 left-0 right-0 h-[2px] z-[60] bg-transparent"><div id="progress" class="h-full w-0 bg-accent"></div></div>
+<h1 class="sr-only">India Running Events Calendar — find marathons, half marathons, 10K and 5K runs across 100+ cities</h1>
+
+<!-- NAV -->
+<header id="siteHeader" class="sticky top-0 z-40 bg-paper/85 backdrop-blur-[10px] border-b border-zinc-200/80">
+  <div class="max-w-[1280px] mx-auto px-3 sm:px-4 md:px-6 h-[60px] flex items-center gap-2 sm:gap-3">
+    <a href="#" class="flex items-center gap-2.5 shrink-0" aria-label="MyNextBib home">
+      <img id="logoImg" src="./logo.png" alt="MyNextBib" width="32" height="32" class="rounded-[9px] shadow-soft shrink-0 w-8 h-8 object-cover" onerror="this.style.display='none';var s=document.getElementById('logoSvg');if(s)s.style.display='block';"/>
+      <svg id="logoSvg" style="display:none" width="32" height="32" viewBox="0 0 64 64" class="rounded-[9px] shadow-soft shrink-0" role="img" aria-label="MyNextBib runner logo">
+        <rect x="1" y="1" width="62" height="62" rx="15" fill="#E8490C"/>
+        <g stroke="#fff" stroke-linecap="round" fill="none">
+          <path d="M41.5 27.5L14.5 54.5" stroke-width="9.5"/>
+          <path d="M18 28.5L31.5 32.5" stroke-width="7"/>
+          <path d="M41 38.5C40 45.5 36 49.5 30 52.5" stroke-width="8"/>
+        </g>
+        <circle cx="43" cy="18.5" r="5.2" fill="#fff"/>
+      </svg>
+      <div class="flex flex-col leading-none">
+        <span class="font-semibold text-[15px] tracking-tight">mynextbib</span>
+      </div>
+    </a>
+    <div class="hidden xl:flex items-center gap-2.5 ml-2 text-[11px] text-zinc-500 shrink-0">
+      <span class="inline-flex items-center gap-1.5">
+        <i data-lucide="footprints" class="w-3.5 h-3.5 text-accent"></i>
+        <span class="font-medium text-zinc-700" id="statEvents">—</span> events
+        <span class="mx-1 text-zinc-300">·</span><span id="statCities">—</span> cities
+        <span class="mx-1 text-zinc-300">·</span><span id="statDist">—</span> distances
+        <span class="mx-1 text-zinc-300">·</span> updated today
+      </span>
+      <span id="spark" class="hidden lg:inline-flex items-end gap-[2px] ml-2 h-[16px]"></span>
+    </div>
+    <!-- centered search (desktop) -->
+    <div class="hidden md:flex flex-1 justify-center px-2 min-w-0">
+      <div class="relative w-full max-w-[400px]">
+        <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
+        <input id="searchDesk" placeholder="Search runs, cities, distances…" class="h-10 w-full pl-10 pr-12 rounded-full bg-white border border-zinc-200 shadow-soft text-[13px] placeholder:text-zinc-400 focus:outline-none focus:border-accentline focus:ring-4 focus:ring-accent/10"/>
+        <kbd class="absolute right-3 top-1/2 -translate-y-1/2 hidden lg:inline-flex items-center h-5 px-1.5 rounded-md border border-zinc-200 bg-zinc-50 text-[10px] font-semibold text-zinc-400">⌘K</kbd>
+      </div>
+    </div>
+    <div class="ml-auto flex items-center gap-2 shrink-0">
+      <button id="clearAllTop" class="hidden h-8 px-3 rounded-full border border-zinc-200 bg-white text-[12px] font-medium hover:bg-zinc-50">Clear</button>
+      <span class="hidden md:block h-5 w-px bg-zinc-200"></span>
+      <a href="https://www.strava.com/athletes/28362988" target="_blank" rel="noopener" title="Built by sameer hoda — view Strava profile" class="group flex items-center gap-2 rounded-full border border-zinc-200 bg-white p-1 hover:border-accentline hover:shadow-soft transition-all">
+        <img src="https://dgalywyr863hv.cloudfront.net/pictures/athletes/28362988/22032102/1/medium.jpg" alt="sameer hoda" class="w-7 h-7 rounded-full object-cover bg-accentsoft" referrerpolicy="no-referrer" onerror="this.style.display='none';var f=document.getElementById('avatarFallback');if(f)f.style.display='grid';"/>
+        <span id="avatarFallback" style="display:none" class="w-7 h-7 rounded-full bg-accent text-white place-items-center"><i data-lucide="footprints" class="w-3.5 h-3.5"></i></span>
+        <span class="text-left leading-tight pr-1">
+          <span class="block text-[9px] uppercase tracking-[0.08em] text-zinc-400 font-semibold">Built by</span>
+          <span class="block text-[12px] font-semibold -mt-px group-hover:text-accentdeep">sameer hoda</span>
+        </span>
+        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-zinc-400 mr-1"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- FILTERS (sticky, Airbnb pill bar) -->
+<div id="filterBar" class="sticky top-[60px] z-30 bg-paper/90 backdrop-blur-[10px] border-b border-zinc-200/80">
+  <div class="max-w-[1280px] mx-auto px-3 sm:px-4 md:px-6 py-2 md:py-3 space-y-2 md:space-y-2.5">
+    <!-- mobile search: full-width, centered -->
+    <div class="md:hidden relative">
+      <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
+      <input id="searchMobile" placeholder="Search runs, cities, distances…" class="w-full h-10 pl-10 pr-9 rounded-full bg-white border border-zinc-200 shadow-soft text-[13px] placeholder:text-zinc-400 focus:outline-none focus:border-accentline focus:ring-4 focus:ring-accent/10"/>
+      <i data-lucide="footprints" class="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-accentline"></i>
+    </div>
+   <div id="filterRows" class="space-y-1.5 md:space-y-2.5">
+    <div class="flex items-center gap-2 md:gap-3">
+      <span class="shrink-0 text-[11px] font-semibold tracking-wide uppercase text-zinc-400 w-[44px] md:w-[62px] flabel">City</span>
+      <div class="relative flex-1 min-w-0">
+        <div class="fade-l"></div><div class="fade-r"></div>
+        <div id="cityRow" role="radiogroup" aria-label="City" class="hide-scrollbar overflow-x-auto flex items-center gap-1.5 pr-2 scroll-smooth snap-x"></div>
+      </div>
+      <button id="expandCities" class="shrink-0 hidden text-[12px] font-medium text-zinc-500 hover:text-zinc-900 border border-zinc-200 rounded-full px-2.5 h-7">+ more</button>
+    </div>
+    <div class="flex items-center gap-2 md:gap-3">
+      <span class="shrink-0 text-[11px] font-semibold tracking-wide uppercase text-zinc-400 w-[44px] md:w-[62px] flabel">Distance</span>
+      <div class="relative flex-1 min-w-0">
+        <div class="fade-l"></div><div class="fade-r"></div>
+        <div id="distRow" role="radiogroup" aria-label="Distance" class="hide-scrollbar overflow-x-auto flex items-center gap-1.5 pr-2 scroll-smooth snap-x"></div>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="shrink-0 text-[11px] font-semibold tracking-wide uppercase text-zinc-400 w-[44px] md:w-[62px] flabel">Filter</span>
+      <div class="flex flex-wrap items-center gap-1.5 md:gap-2 flex-1 min-w-0">
+        <div id="dateRow" role="radiogroup" aria-label="Date" class="flex items-center gap-1 p-1 rounded-full bg-zinc-100 border border-zinc-200">
+          <button data-date="All" class="datePill h-6 px-3 rounded-full text-[12px] font-medium bg-white shadow-soft border border-zinc-200">All</button>
+          <button data-date="This month" class="datePill h-6 px-3 rounded-full text-[12px] font-medium text-zinc-600 hover:text-zinc-900">This month</button>
+          <button data-date="Next 3 months" class="datePill h-6 px-3 rounded-full text-[12px] font-medium text-zinc-600 hover:text-zinc-900">Next 3 mo</button>
+        </div>
+        <button id="chipPrice" aria-pressed="false" class="pill h-7 px-3 rounded-full border border-zinc-200 bg-white text-[13px] font-medium inline-flex items-center gap-1.5 hover:border-zinc-300"><i data-lucide="ticket" class="w-3.5 h-3.5"></i> With price</button>
+        <button id="chipClosing" aria-pressed="false" class="pill h-7 px-3 rounded-full border border-zinc-200 bg-white text-[13px] font-medium inline-flex items-center gap-1.5 hover:border-zinc-300"><i data-lucide="clock" class="w-3.5 h-3.5"></i> Closing soon</button>
+        <div class="relative" id="sortWrap">
+          <button id="sortBtn" aria-haspopup="listbox" aria-expanded="false" class="h-7 pl-2.5 pr-2 rounded-full border border-zinc-200 bg-white inline-flex items-center gap-1.5 text-[12px] font-medium text-zinc-700 hover:border-accentline hover:shadow-soft transition-all">
+            <i data-lucide="arrow-down-wide-narrow" class="w-3.5 h-3.5 text-accent"></i>
+            <span id="sortLabel">Soonest</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-zinc-400"></i>
+          </button>
+          <div id="sortMenu" role="listbox" aria-label="Sort runs" class="hidden absolute right-0 sm:left-0 sm:right-auto mt-1.5 w-[180px] rounded-xl border border-zinc-200 bg-white shadow-lift p-1 z-50">
+            <button role="option" aria-selected="true" data-sort="soonest" class="sortOpt w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-[13px] font-medium text-zinc-800 hover:bg-accentsoft"><i data-lucide="calendar-clock" class="w-4 h-4 text-accent"></i><span class="flex-1 text-left">Soonest first</span><i data-lucide="check" class="sortCheck w-4 h-4 text-accent"></i></button>
+            <button role="option" aria-selected="false" data-sort="city" class="sortOpt w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-[13px] font-medium text-zinc-800 hover:bg-accentsoft"><i data-lucide="map-pin" class="w-4 h-4 text-zinc-400"></i><span class="flex-1 text-left">City A–Z</span><i data-lucide="check" class="sortCheck hidden w-4 h-4 text-accent"></i></button>
+            <button role="option" aria-selected="false" data-sort="title" class="sortOpt w-full flex items-center gap-2 px-2.5 py-2 rounded-lg text-[13px] font-medium text-zinc-800 hover:bg-accentsoft"><i data-lucide="type" class="w-4 h-4 text-zinc-400"></i><span class="flex-1 text-left">Name A–Z</span><i data-lucide="check" class="sortCheck hidden w-4 h-4 text-accent"></i></button>
+          </div>
+        </div>
+        <span id="activeCount" class="ml-auto text-[12px] font-medium text-zinc-600"></span>
+      </div>
+    </div>
+   </div><!-- /#filterRows -->
+    <!-- mobile month rail (horizontal) -->
+    <div class="lg:hidden relative">
+      <div class="fade-l"></div><div class="fade-r"></div>
+      <div id="monthRailM" class="hide-scrollbar overflow-x-auto flex items-center gap-1.5 pr-2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY: sticky month rail + timeline -->
+<div class="max-w-[1280px] mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 flex gap-8 items-start">
+  <!-- desktop month rail -->
+  <aside class="hidden lg:block w-[188px] shrink-0 sticky self-start" style="top:var(--railTop,218px)">
+    <div class="text-[11px] font-semibold tracking-wide uppercase text-zinc-400 mb-2 px-1">Months</div>
+    <nav id="monthRail" class="flex flex-col gap-1 max-h-[calc(100vh-280px)] overflow-auto pr-1"></nav>
+    <div class="mt-4 px-1 text-[11px] leading-relaxed text-zinc-400">Rail follows scroll.<br/>Click jumps with Lenis.</div>
+  </aside>
+
+  <!-- timeline -->
+  <main class="flex-1 min-w-0">
+    <div id="timeline" class="space-y-8 sm:space-y-10">
+      <div class="flex items-center gap-2 text-[12px] font-medium text-zinc-500" aria-live="polite">
+        <i data-lucide="footprints" class="w-4 h-4 text-accent"></i>
+        <span>Lacing up — fetching the season…</span>
+      </div>
+      <section aria-hidden="true">
+        <div class="flex items-baseline gap-2.5 py-2">
+          <span class="w-2 h-2 rounded-[3px] bg-accentline shrink-0 self-center"></span>
+          <div class="skel h-[13px] w-28"></div>
+          <div class="skel h-[11px] w-12" style="animation-delay:.15s"></div>
+          <div class="flex-1 h-px bg-zinc-200"></div>
+        </div>
+        <div class="relative spine mt-1 space-y-2 pl-[56px] sm:pl-[68px]">
+          <div class="relative"><span class="absolute -left-[38px] sm:-left-[48px] top-6 w-[13px] h-[13px] rounded-full bg-paper border-[2.5px] border-accentline"></span>
+            <div class="bg-white border border-zinc-200 rounded-[12px] p-2 sm:p-2.5 flex gap-2.5"><div class="skel shrink-0 w-[38px] sm:w-[42px] h-[46px] sm:h-[50px]" style="border-radius:9px"></div><div class="flex-1 min-w-0 py-px space-y-1.5"><div class="skel h-[11px] w-2/5"></div><div class="skel h-[14px] w-4/5" style="animation-delay:.1s"></div><div class="flex gap-1"><div class="skel h-[18px] w-9" style="border-radius:999px;animation-delay:.2s"></div><div class="skel h-[18px] w-9" style="border-radius:999px;animation-delay:.3s"></div><div class="skel h-[18px] w-12" style="border-radius:999px;animation-delay:.4s"></div></div></div></div></div>
+          <div class="relative"><span class="absolute -left-[38px] sm:-left-[48px] top-6 w-[13px] h-[13px] rounded-full bg-paper border-[2.5px] border-accentline"></span>
+            <div class="bg-white border border-zinc-200 rounded-[12px] p-2 sm:p-2.5 flex gap-2.5"><div class="skel shrink-0 w-[38px] sm:w-[42px] h-[46px] sm:h-[50px]" style="border-radius:9px;animation-delay:.1s"></div><div class="flex-1 min-w-0 py-px space-y-1.5"><div class="skel h-[11px] w-1/3" style="animation-delay:.15s"></div><div class="skel h-[14px] w-3/5" style="animation-delay:.25s"></div><div class="flex gap-1"><div class="skel h-[18px] w-9" style="border-radius:999px;animation-delay:.3s"></div><div class="skel h-[18px] w-12" style="border-radius:999px;animation-delay:.4s"></div></div></div></div></div>
+          <div class="relative"><span class="absolute -left-[38px] sm:-left-[48px] top-6 w-[13px] h-[13px] rounded-full bg-paper border-[2.5px] border-accentline"></span>
+            <div class="bg-white border border-zinc-200 rounded-[12px] p-2 sm:p-2.5 flex gap-2.5"><div class="skel shrink-0 w-[38px] sm:w-[42px] h-[46px] sm:h-[50px]" style="border-radius:9px;animation-delay:.2s"></div><div class="flex-1 min-w-0 py-px space-y-1.5"><div class="skel h-[11px] w-1/2" style="animation-delay:.25s"></div><div class="skel h-[14px] w-2/3" style="animation-delay:.35s"></div><div class="flex gap-1"><div class="skel h-[18px] w-9" style="border-radius:999px;animation-delay:.4s"></div><div class="skel h-[18px] w-9" style="border-radius:999px;animation-delay:.5s"></div></div></div></div></div>
+        </div>
+      </section>
+      <section aria-hidden="true">
+        <div class="flex items-baseline gap-2.5 py-2">
+          <span class="w-2 h-2 rounded-[3px] bg-accentline shrink-0 self-center"></span>
+          <div class="skel h-[13px] w-24" style="animation-delay:.1s"></div>
+          <div class="skel h-[11px] w-10" style="animation-delay:.2s"></div>
+          <div class="flex-1 h-px bg-zinc-200"></div>
+        </div>
+        <div class="relative spine mt-1 space-y-2 pl-[56px] sm:pl-[68px]">
+          <div class="relative"><span class="absolute -left-[38px] sm:-left-[48px] top-6 w-[13px] h-[13px] rounded-full bg-paper border-[2.5px] border-accentline"></span>
+            <div class="bg-white border border-zinc-200 rounded-[12px] p-2 sm:p-2.5 flex gap-2.5"><div class="skel shrink-0 w-[38px] sm:w-[42px] h-[46px] sm:h-[50px]" style="border-radius:9px;animation-delay:.15s"></div><div class="flex-1 min-w-0 py-px space-y-1.5"><div class="skel h-[11px] w-2/5" style="animation-delay:.2s"></div><div class="skel h-[14px] w-3/4" style="animation-delay:.3s"></div><div class="flex gap-1"><div class="skel h-[18px] w-12" style="border-radius:999px;animation-delay:.4s"></div><div class="skel h-[18px] w-9" style="border-radius:999px;animation-delay:.5s"></div></div></div></div></div>
+          <div class="relative"><span class="absolute -left-[38px] sm:-left-[48px] top-6 w-[13px] h-[13px] rounded-full bg-paper border-[2.5px] border-accentline"></span>
+            <div class="bg-white border border-zinc-200 rounded-[12px] p-2 sm:p-2.5 flex gap-2.5"><div class="skel shrink-0 w-[38px] sm:w-[42px] h-[46px] sm:h-[50px]" style="border-radius:9px;animation-delay:.25s"></div><div class="flex-1 min-w-0 py-px space-y-1.5"><div class="skel h-[11px] w-1/3" style="animation-delay:.3s"></div><div class="skel h-[14px] w-1/2" style="animation-delay:.4s"></div><div class="flex gap-1"><div class="skel h-[18px] w-9" style="border-radius:999px;animation-delay:.5s"></div><div class="skel h-[18px] w-9" style="border-radius:999px;animation-delay:.6s"></div></div></div></div></div>
+        </div>
+      </section>
+    </div>
+    <div id="empty" class="hidden py-20 text-center">
+      <div class="mx-auto w-12 h-12 rounded-full bg-accentsoft border border-accentline/70 grid place-items-center mb-4"><i data-lucide="route" class="w-5 h-5 text-accent"></i></div>
+      <h3 class="font-semibold text-[16px]">No runs match those filters</h3>
+      <p class="text-[13px] text-zinc-500 mt-1 max-w-[320px] mx-auto">Try another city or distance, or clear filters to see the full timeline.</p>
+      <button id="emptyClear" class="mt-4 h-9 px-4 rounded-full bg-accent text-white text-[13px] font-medium hover:bg-accentdeep">Clear filters</button>
+    </div>
+    <div id="loadFail" class="hidden mt-10 p-4 rounded-xl border border-amber-200 bg-amber-50 text-[13px] text-amber-900">
+      Could not load <code>prd.json</code>. Serve via <code>python3 -m http.server 8000 --directory variants</code>.
+    </div>
+  </main>
+</div>
+
+<footer class="border-t border-zinc-200/80 mt-10">
+  <div class="max-w-[1280px] mx-auto px-4 md:px-6 pt-5 pb-6">
+    <div class="flex justify-center pb-4" aria-hidden="true">
+      <svg width="220" height="26" viewBox="0 0 220 26" fill="none">
+        <path d="M6 20 C 60 20, 72 6, 112 9 S 168 22, 198 12" stroke="#E9B77D" stroke-width="1.5" stroke-dasharray="4 4" stroke-linecap="round"/>
+        <circle cx="6" cy="20" r="3" fill="#C2410C"/>
+        <circle cx="198" cy="12" r="4.5" stroke="#C2410C" stroke-width="1.5"/>
+        <circle cx="198" cy="12" r="1.6" fill="#C2410C"/>
+      </svg>
+    </div>
+    <div class="flex flex-wrap items-center gap-2 text-[11px] text-zinc-500">
+      <span class="inline-flex items-center gap-1.5"><i data-lucide="footprints" class="w-3.5 h-3.5 text-accentline"></i>© MyNextBib · Timeline v2 · sticky month rail + Lenis · warm paper + ember accent · Lucide only</span>
+      <a href="https://www.strava.com/athletes/28362988" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-1 font-medium text-zinc-600 hover:text-accentdeep">Built by sameer hoda <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i></a>
+      <span class="text-zinc-300" aria-hidden="true">·</span>
+      <a href="/must-do/" class="inline-flex items-center gap-1 font-medium text-zinc-600 hover:text-accentdeep">Must-do runs <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></a>
+    </div>
+  </div>
+</footer>
+
+<!-- Half-card detail modal -->
+<div id="drawer" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-label="Run details">
+  <div id="drawerBg" class="absolute inset-0 bg-[#1C1917]/50 backdrop-blur-[6px] opacity-0"></div>
+  <div class="absolute inset-0 flex items-end sm:items-center justify-center sm:p-6 pointer-events-none">
+    <div id="drawerPanel" class="pointer-events-auto relative w-full sm:max-w-[620px] bg-[#FFFDF9] border border-zinc-200/80 rounded-t-[24px] sm:rounded-[24px] shadow-[0_24px_80px_-12px_rgba(28,25,23,.35)] max-h-[82dvh] sm:max-h-[84vh] flex flex-col overflow-hidden opacity-0">
+      <div class="pt-2.5 pb-1 grid place-items-center sm:hidden shrink-0" aria-hidden="true"><span class="w-10 h-1 rounded-full bg-zinc-300"></span></div>
+      <button id="drawerClose" aria-label="Close details" class="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-9 h-9 grid place-items-center rounded-full bg-white/85 backdrop-blur border border-zinc-200 text-zinc-500 hover:text-accentdeep hover:border-accentline transition"><i data-lucide="x" class="w-4 h-4"></i></button>
+      <div id="drawerBody" class="flex-1 overflow-y-auto overscroll-contain px-5 sm:px-7 pt-3 sm:pt-5 pb-4 space-y-5"></div>
+      <div id="drawerFoot" class="shrink-0 border-t border-zinc-200/80 bg-[#FFFDF9]/92 backdrop-blur px-5 sm:px-7 py-3.5"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DIST_KEYS=["1K","2K","3K","5K","10K","15K","21.1K","25K","35K","42.2K","50K","100K","other"];
+const MS=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+const MF=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const DATA_URLS=["../output/prd.json","./prd.json","./output/prd.json","/output/prd.json","../showcase-ref/prd_20260816.json","../showcase-ref/prd.json"];
+let events=[],filtered=[];
+let selectedCity="All",selectedDist="All",dateWindow="All",withPrice=false,closingSoon=false,sortBy="soonest",searchQ="";
+let cityExpanded=false,cityCounts={},distCounts={};
+let lenis=null,observer=null,revealObs=null,firstRender=true;
+
+/* ---------- Lenis smooth scroll (Linear/Vercel-grade motion) ---------- */
+function initLenis(){
+  try{
+    if(window.Lenis){
+      lenis=new Lenis({duration:1.08,smoothWheel:true});
+      const raf=(t)=>{lenis.raf(t);requestAnimationFrame(raf);};
+      requestAnimationFrame(raf);
+    }
+  }catch(e){console.warn("lenis off",e);}
+  // scroll progress (thin zinc bar, no color pop)
+  const bar=document.getElementById("progress");
+  const onScroll=()=>{
+    const h=document.documentElement;
+    const max=h.scrollHeight-h.clientHeight;
+    bar.style.width=(max>0?(h.scrollTop/max)*100:0)+"%";
+  };
+  window.addEventListener("scroll",onScroll,{passive:true});
+}
+function stickyHeights(){
+  const h=document.getElementById("siteHeader");
+  const f=document.getElementById("filterBar");
+  return (h?h.offsetHeight:58)+(f?f.offsetHeight:140);
+}
+function updateSticky(){
+  const t=stickyHeights();
+  document.documentElement.style.setProperty("--mTop",(t+4)+"px");
+  document.documentElement.style.setProperty("--railTop",(t+16)+"px");
+}
+function scrollToId(id){
+  const el=document.getElementById(id);
+  if(!el) return;
+  const off=-(stickyHeights()+12);
+  if(lenis) lenis.scrollTo(el,{offset:off,duration:1.1});
+  else el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+/* ---------- utils ---------- */
+function fmtDate(iso){
+  const d=new Date(iso+"T00:00:00");
+  if(isNaN(d.getTime())) return {dd:"--",mon:"--",dow:"",diff:999,urgent:false};
+  const dd=String(d.getDate()).padStart(2,"0");
+  const mon=MS[d.getMonth()];
+  const dow=d.toLocaleDateString("en-GB",{weekday:"short"});
+  const t=new Date();t.setHours(0,0,0,0);
+  const diff=Math.ceil((d-t)/86400000);
+  return {dd,mon,dow,diff,urgent:diff>=0&&diff<=14};
+}
+function isFallback(u){return !u||u.includes("mynextbib.com");}
+function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function monthKey(iso){return iso.slice(0,7);}
+function monthLabel(key){
+  const [y,m]=key.split("-").map(Number);
+  return MF[m-1]+" "+y;
+}
+
+/* ---------- data ---------- */
+async function loadData(){
+  for(const u of DATA_URLS){
+    try{      const r=await fetch(u,{cache:"default"});if(!r.ok)continue;
+      const j=await r.json();const arr=Array.isArray(j)?j:Object.values(j);
+      if(arr.length){events=arr;console.log("loaded",u,arr.length);break;}}catch(e){}
+  }
+  if(!events.length){document.getElementById("timeline").innerHTML="";document.getElementById("loadFail").classList.remove("hidden");lucide.createIcons();return;}
+  events=events.map(e=>{if(!e.price)e.price={raw:null,min:null,max:null};if(!e.cutoff_times)e.cutoff_times={};if(!e.location)e.location={city:"Unknown"};return e;});
+  events.sort((a,b)=>a.event_date.localeCompare(b.event_date));
+  // future-only: hide past events (snapshot predates today)
+  const _t=new Date();_t.setHours(0,0,0,0);
+  const _todayISO=`${_t.getFullYear()}-${String(_t.getMonth()+1).padStart(2,"0")}-${String(_t.getDate()).padStart(2,"0")}`;
+  const _pastN=events.filter(e=>e.event_date<_todayISO).length;
+  events=events.filter(e=>e.event_date>=_todayISO);
+  console.log("future:",events.length,"past hidden:",_pastN);
+  computeCounts();bind();applyFilters();lucide.createIcons();
+}
+function computeCounts(){
+  cityCounts={};distCounts={};
+  events.forEach(e=>{
+    const c=(e.location.city||"Unknown").trim()||"Unknown";
+    cityCounts[c]=(cityCounts[c]||0)+1;
+    DIST_KEYS.forEach(k=>{if(e.distances&&e.distances[k])distCounts[k]=(distCounts[k]||0)+1;});
+  });
+  document.getElementById("statEvents").textContent=events.length;
+  document.getElementById("statCities").textContent=Object.keys(cityCounts).length;
+  document.getElementById("statDist").textContent=Object.keys(distCounts).length;
+  const byMon={};
+  events.forEach(e=>{const m=e.event_date.slice(0,7);byMon[m]=(byMon[m]||0)+1;});
+  const months=Object.keys(byMon).sort().slice(0,12);
+  const max=Math.max(...Object.values(byMon),1);
+  document.getElementById("spark").innerHTML=months.map(m=>{
+    const h=Math.max(3,Math.round((byMon[m]/max)*16));
+    return `<span class="w-[3px] rounded-full bg-zinc-300" style="height:${h}px"></span>`;
+  }).join("");
+}
+
+/* ---------- pills (Airbnb pattern: hairline, invert on active, counts) ---------- */
+function renderCityPills(){
+  const row=document.getElementById("cityRow");
+  const entries=Object.entries(cityCounts).sort((a,b)=>b[1]-a[1]);
+  const top=cityExpanded?entries:entries.slice(0,14);
+  let html=`<button role="radio" aria-checked="${selectedCity==="All"}" data-city="All" class="pill shrink-0 h-7 px-3 rounded-full border text-[13px] font-medium snap-start ${selectedCity==="All"?"bg-accent text-white border-accent":"bg-white border-zinc-200 text-zinc-700 hover:border-zinc-300"}">All cities <span class="ml-1 text-[11px] opacity-60">${events.length}</span></button>`;
+  top.forEach(([city,count])=>{
+    const a=selectedCity===city;
+    html+=`<button role="radio" aria-checked="${a}" data-city="${esc(city)}" class="pill shrink-0 h-7 px-3 rounded-full border text-[13px] font-medium snap-start ${a?"bg-accent text-white border-accent":"bg-white border-zinc-200 text-zinc-700 hover:border-zinc-300"}">${esc(city)} <span class="ml-1 text-[11px] ${a?"text-zinc-300":"text-zinc-400"}">(${count})</span></button>`;
+  });
+  row.innerHTML=html;
+  const more=entries.length-14,btn=document.getElementById("expandCities");
+  if(more>0&&!cityExpanded){btn.classList.remove("hidden");btn.textContent=`+${more} more`;}
+  else if(more>0){btn.classList.remove("hidden");btn.textContent="Show less";}
+  else btn.classList.add("hidden");
+}
+function renderDistPills(){
+  const row=document.getElementById("distRow");
+  let html=`<button role="radio" aria-checked="${selectedDist==="All"}" data-dist="All" class="pill shrink-0 h-7 px-3 rounded-full border text-[13px] font-medium snap-start ${selectedDist==="All"?"bg-accent text-white border-accent":"bg-white border-zinc-200 text-zinc-700 hover:border-zinc-300"}">All distances <span class="ml-1 text-[11px] opacity-60">${events.length}</span></button>`;
+  DIST_KEYS.forEach(k=>{
+    const cnt=distCounts[k]||0;if(!cnt)return;
+    const a=selectedDist===k;
+    html+=`<button role="radio" aria-checked="${a}" data-dist="${k}" class="pill shrink-0 h-7 px-3 rounded-full border text-[13px] font-medium snap-start ${a?"bg-accent text-white border-accent":"bg-white border-zinc-200 text-zinc-700 hover:border-zinc-300"}">${k==="other"?"Other":k} <span class="ml-1 text-[11px] ${a?"text-zinc-300":"text-zinc-400"}">(${cnt})</span></button>`;
+  });
+  row.innerHTML=html;
+}
+const SORT_LABELS={soonest:"Soonest",city:"City A–Z",title:"Name A–Z"};
+function renderSort(){
+  const lbl=document.getElementById("sortLabel");
+  if(lbl)lbl.textContent=SORT_LABELS[sortBy]||"Soonest";
+  document.querySelectorAll(".sortOpt").forEach(o=>{
+    const on=o.dataset.sort===sortBy;
+    o.setAttribute("aria-selected",String(on));
+    const c=o.querySelector(".sortCheck");
+    if(c)c.classList.toggle("hidden",!on);
+  });
+}
+function closeSort(){
+  const m=document.getElementById("sortMenu"),b=document.getElementById("sortBtn");
+  if(m)m.classList.add("hidden");
+  if(b)b.setAttribute("aria-expanded","false");
+}
+function ph(ev,props){try{if(window.posthog)window.posthog.capture(ev,props||{});}catch(_){}}
+let searchTimer=null,drawerEvent=null;
+function bind(){
+  renderCityPills();renderDistPills();
+  document.getElementById("cityRow").addEventListener("click",e=>{const b=e.target.closest("[data-city]");if(!b)return;selectedCity=b.dataset.city;ph("city_filter",{city:selectedCity||"All"});renderCityPills();applyFilters();});
+  document.getElementById("distRow").addEventListener("click",e=>{const b=e.target.closest("[data-dist]");if(!b)return;selectedDist=b.dataset.dist;ph("distance_filter",{distance:selectedDist||"All"});renderDistPills();applyFilters();});
+  document.getElementById("expandCities").addEventListener("click",()=>{cityExpanded=!cityExpanded;renderCityPills();});
+  document.getElementById("dateRow").addEventListener("click",e=>{
+    const b=e.target.closest("[data-date]");if(!b)return;dateWindow=b.dataset.date;
+    [...document.querySelectorAll(".datePill")].forEach(x=>x.className="datePill h-6 px-3 rounded-full text-[12px] font-medium text-zinc-600 hover:text-zinc-900");
+    b.className="datePill h-6 px-3 rounded-full text-[12px] font-medium bg-white shadow-soft border border-zinc-200";
+    applyFilters();
+  });
+  document.getElementById("chipPrice").addEventListener("click",e=>{
+    withPrice=!withPrice;const b=e.currentTarget;b.setAttribute("aria-pressed",String(withPrice));
+    b.className=withPrice?"pill h-7 px-3 rounded-full border bg-accent text-white border-accent text-[13px] font-medium inline-flex items-center gap-1.5":"pill h-7 px-3 rounded-full border border-zinc-200 bg-white text-[13px] font-medium inline-flex items-center gap-1.5 hover:border-zinc-300";
+    applyFilters();
+  });
+  document.getElementById("chipClosing").addEventListener("click",e=>{
+    closingSoon=!closingSoon;const b=e.currentTarget;b.setAttribute("aria-pressed",String(closingSoon));
+    b.className=closingSoon?"pill h-7 px-3 rounded-full border bg-accent text-white border-accent text-[13px] font-medium inline-flex items-center gap-1.5":"pill h-7 px-3 rounded-full border border-zinc-200 bg-white text-[13px] font-medium inline-flex items-center gap-1.5 hover:border-zinc-300";
+    applyFilters();
+  });
+  renderSort();
+  document.getElementById("sortBtn").addEventListener("click",e=>{
+    e.stopPropagation();
+    const m=document.getElementById("sortMenu");
+    const nowHidden=m.classList.toggle("hidden");
+    document.getElementById("sortBtn").setAttribute("aria-expanded",String(!nowHidden));
+  });
+  document.querySelectorAll(".sortOpt").forEach(o=>o.addEventListener("click",e=>{
+    e.stopPropagation();
+    sortBy=o.dataset.sort;ph("sort_change",{sort:sortBy});renderSort();closeSort();applyFilters();
+  }));
+  document.addEventListener("click",e=>{if(!e.target.closest("#sortWrap"))closeSort();});
+  function searchInput(e,other){searchQ=e.target.value.toLowerCase().trim();document.getElementById(other).value=e.target.value;applyFilters();clearTimeout(searchTimer);const q=searchQ;if(q.length>2)searchTimer=setTimeout(()=>ph("event_search",{query:q}),1500);}
+  document.getElementById("searchDesk").addEventListener("input",e=>searchInput(e,"searchMobile"));
+  document.getElementById("searchMobile").addEventListener("input",e=>searchInput(e,"searchDesk"));
+  document.getElementById("drawerFoot").addEventListener("click",e=>{const a=e.target.closest("a[href]");if(!a||!drawerEvent)return;ph("registration_click",{event_name:drawerEvent.event_name,event_date:drawerEvent.event_date,city:(drawerEvent.location||{}).city||"Unknown",source:"timeline_drawer"});});
+  document.getElementById("clearAllTop").addEventListener("click",clearAll);
+  document.getElementById("emptyClear").addEventListener("click",clearAll);
+  window.addEventListener("resize",updateSticky);
+  updateSticky();
+  document.getElementById("drawerBg").addEventListener("click",closeDrawer);
+  document.getElementById("drawerClose").addEventListener("click",closeDrawer);
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"){closeDrawer();closeSort();}
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){
+      e.preventDefault();
+      const t=window.innerWidth>=768?document.getElementById("searchDesk"):document.getElementById("searchMobile");
+      if(t)t.focus();
+    }
+  });
+  [document.getElementById("cityRow"),document.getElementById("distRow")].forEach(row=>{
+    row.addEventListener("keydown",e=>{
+      if(e.key==="ArrowRight"||e.key==="ArrowLeft"){
+        const pills=[...row.querySelectorAll("button")];const idx=pills.indexOf(document.activeElement);
+        if(idx>=0){const n=e.key==="ArrowRight"?Math.min(pills.length-1,idx+1):Math.max(0,idx-1);pills[n].focus();e.preventDefault();}
+      }
+    });
+  });
+}
+function clearAll(){
+  selectedCity="All";selectedDist="All";dateWindow="All";withPrice=false;closingSoon=false;searchQ="";sortBy="soonest";
+  document.getElementById("searchDesk").value="";document.getElementById("searchMobile").value="";
+  renderSort();
+  const cp=document.getElementById("chipPrice");cp.setAttribute("aria-pressed","false");cp.className="pill h-7 px-3 rounded-full border border-zinc-200 bg-white text-[13px] font-medium inline-flex items-center gap-1.5 hover:border-zinc-300";
+  const cc=document.getElementById("chipClosing");cc.setAttribute("aria-pressed","false");cc.className="pill h-7 px-3 rounded-full border border-zinc-200 bg-white text-[13px] font-medium inline-flex items-center gap-1.5 hover:border-zinc-300";
+  [...document.querySelectorAll(".datePill")].forEach((x,i)=>x.className=i===0?"datePill h-6 px-3 rounded-full text-[12px] font-medium bg-white shadow-soft border border-zinc-200":"datePill h-6 px-3 rounded-full text-[12px] font-medium text-zinc-600 hover:text-zinc-900");
+  renderCityPills();renderDistPills();applyFilters();
+}
+
+/* ---------- filter ---------- */
+function applyFilters(){
+  const today=new Date();today.setHours(0,0,0,0);
+  const tm=today.getMonth(),ty=today.getFullYear();
+  let out=events.filter(e=>{
+    if(selectedCity!=="All"&&(e.location.city||"")!==selectedCity)return false;
+    if(selectedDist!=="All"&&!(e.distances&&e.distances[selectedDist]))return false;
+    if(dateWindow==="This month"){const d=new Date(e.event_date+"T00:00:00");if(d.getMonth()!==tm||d.getFullYear()!==ty)return false;}
+    if(dateWindow==="Next 3 months"){const d=new Date(e.event_date+"T00:00:00");const diff=(d-today)/86400000;if(diff<0||diff>90)return false;}
+    if(withPrice&&!(e.price&&(e.price.raw||e.price.min)))return false;
+    if(closingSoon){
+      if(!e.registration_closes)return false;
+      const rc=new Date(e.registration_closes+"T00:00:00");const diff=(rc-today)/86400000;
+      if(isNaN(diff)||diff<0||diff>14)return false;
+    }
+    if(searchQ){
+      const hay=(e.event_name+" "+(e.location.city||"")+" "+(e.location.venue||"")+" "+Object.keys(e.distances||{}).filter(k=>e.distances[k]).join(" ")).toLowerCase();
+      if(!hay.includes(searchQ))return false;
+    }
+    return true;
+  });
+  if(sortBy==="city")out.sort((a,b)=>(a.location.city||"").localeCompare(b.location.city||""));
+  else if(sortBy==="title")out.sort((a,b)=>a.event_name.localeCompare(b.event_name));
+  else out.sort((a,b)=>a.event_date.localeCompare(b.event_date));
+  filtered=out;
+  document.getElementById("activeCount").textContent=`${filtered.length} of ${events.length}`;
+  document.getElementById("clearAllTop").classList.toggle("hidden",selectedCity==="All"&&selectedDist==="All"&&dateWindow==="All"&&!withPrice&&!closingSoon&&!searchQ);
+  renderTimeline();
+  updateSticky();
+}
+
+/* ---------- timeline render (Strava card-first + Linear restraint) ---------- */
+function rowHtml(e,idx,delayMs){
+  const {dd,mon,dow,diff,urgent}=fmtDate(e.event_date);
+  const city=e.location.city||"Unknown";
+  const venue=e.location.venue||"";
+  const fallback=isFallback(e.event_url)||e.url_status==="guessed"||e.url_status==="broken";
+  const dists=DIST_KEYS.filter(k=>e.distances&&e.distances[k]);
+  const pills=dists.slice(0,4).map(k=>{
+    const a=selectedDist===k;
+    return `<span class="dpill ${a?"dpill-hot":"dpill-dim"}">${k==="other"?"Other":k}</span>`;
+  }).join("");
+  const more=dists.length>4?`<span class="dpill dpill-ghost">+${dists.length-4}</span>`:"";
+  const virt=(e.event_type||"Physical")==="Virtual"?`<span class="dpill dpill-dim"><i data-lucide="video" class="w-2.5 h-2.5 mr-0.5"></i>Virtual</span>`:"";
+  let price="";
+  if(e.price&&e.price.raw)price=esc(e.price.raw.split(" - ")[0]);
+  else if(e.price&&e.price.min)price=`₹${e.price.min}`;
+  let closing="";
+  if(e.registration_closes){
+    const rc=new Date(e.registration_closes+"T00:00:00");const t=new Date();t.setHours(0,0,0,0);
+    const dd2=Math.ceil((rc-t)/86400000);
+    if(dd2>=0&&dd2<=14)closing=`<span class="inline-flex items-center gap-1 text-[10px] font-medium text-accentdeep bg-accentsoft border border-accentline rounded-full px-1.5 h-[18px] shrink-0"><i data-lucide="clock" class="w-2.5 h-2.5"></i>${e.registration_closes.slice(5).replace("-","/")}</span>`;
+  }
+  const dot=urgent?`<span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-accent"></span>`:"";
+  const cta=fallback?`<span class="text-[10px] font-semibold uppercase tracking-wide text-zinc-400 shrink-0 self-center">TBA</span>`:`<i data-lucide="chevron-right" class="w-4 h-4 text-accentdeep shrink-0 self-center"></i>`;
+  return `<article data-idx="${idx}" title="${esc(e.event_name)}" style="transition-delay:${delayMs||0}ms" class="reveal card group cursor-pointer bg-white border border-zinc-200 rounded-[12px] p-2 sm:p-2.5 flex gap-2.5 items-start ${fallback?"opacity-[0.96]":""} hover:border-accentline hover:shadow-lift">
+    <div class="relative shrink-0 w-[38px] sm:w-[42px] h-[46px] sm:h-[50px] rounded-[9px] border border-accentline/70 bg-accentsoft grid place-items-center">
+      <div class="text-center leading-none"><div class="font-mono text-[14px] sm:text-[15px] font-semibold">${dd}</div><div class="text-[9px] font-semibold tracking-widest text-accentdeep/70 mt-[1px]">${mon}</div></div>${dot}
+    </div>
+    <div class="flex-1 min-w-0 py-px">
+      <div class="flex items-center gap-1.5 text-[11px] text-zinc-500 min-w-0">
+        <i data-lucide="map-pin" class="w-3 h-3 shrink-0"></i>
+        <span class="truncate font-medium flex-1 min-w-0">${esc(city)}${venue?" · "+esc(venue):""}</span>
+        <span class="hidden md:inline text-[10px] uppercase tracking-wide text-zinc-400 font-medium whitespace-nowrap">${dow} · ${diff>=0?`in ${diff}d`:`${Math.abs(diff)}d ago`}</span>
+        ${closing}
+      </div>
+      <h3 class="truncate text-[13.5px] sm:text-[14px] font-semibold leading-[1.3] tracking-tight mt-px">${esc(e.event_name)}</h3>
+      <div class="flex items-center gap-1 mt-1 min-w-0">${virt}${pills}${more}${price?`<span class="ml-auto pl-2 text-[11px] font-semibold text-zinc-700 whitespace-nowrap shrink-0">${price}</span>`:""}</div>
+    </div>
+    ${cta}
+  </article>`;
+}
+
+function renderTimeline(){
+  const tl=document.getElementById("timeline");
+  const empty=document.getElementById("empty");
+  if(!filtered.length){tl.innerHTML="";empty.classList.remove("hidden");buildRails([]);injectEventJsonLd();lucide.createIcons();return;}
+  empty.classList.add("hidden");
+  // group by month
+  const groups={};
+  filtered.forEach((e,i)=>{const k=monthKey(e.event_date);(groups[k]=groups[k]||[]).push([e,i]);});
+  const keys=Object.keys(groups).sort();
+  tl.innerHTML=keys.map(k=>{
+    const items=groups[k];
+    return `<section id="m-${k}" data-month="${k}" class="month-sec" style="scroll-margin-top:var(--mTop,190px)">
+      <div class="sticky z-10 -mx-1 px-1 py-2 bg-paper/90 backdrop-blur-[8px]" style="top:var(--mTop,190px)">
+        <div class="flex items-baseline gap-2.5">
+          <span class="w-2 h-2 rounded-[3px] bg-accent shrink-0 self-center"></span>
+          <h2 class="text-[13px] font-semibold tracking-tight whitespace-nowrap">${monthLabel(k)}</h2>
+          <span class="text-[11px] font-medium text-zinc-400">${items.length} run${items.length>1?"s":""}</span>
+          <div class="flex-1 h-px bg-accentline/70"></div>
+        </div>
+      </div>
+      <div class="relative spine mt-1 space-y-2 sm:space-y-2.5 pl-[56px] sm:pl-[68px] md:pl-[72px]">
+        ${items.map(([e,idx],j)=>`<div class="relative"><span class="absolute -left-[38px] sm:-left-[48px] md:-left-[52px] top-6 sm:top-7 w-[13px] h-[13px] rounded-full bg-paper border-[2.5px] border-accentline"></span>${rowHtml(e,idx,Math.min(j*45,360))}</div>`).join("")}
+      </div>
+    </section>`;
+  }).join("");
+  tl.querySelectorAll("article").forEach(el=>el.addEventListener("click",()=>{const e=filtered[parseInt(el.dataset.idx)];ph("event_view",{event_name:e&&e.event_name,event_date:e&&e.event_date,city:(e&&e.location||{}).city||"Unknown"});openDrawer(e);}));
+  buildRails(keys);
+  observeMonths();
+  if(firstRender){firstRender=false;tl.querySelectorAll(".reveal").forEach(el=>el.classList.add("visible"));}
+  else observeReveals();
+  injectEventJsonLd();
+  lucide.createIcons();
+}
+
+function injectEventJsonLd(){
+  try{
+    const old=document.getElementById("jsonld-events");
+    if(old)old.remove();
+    if(!filtered.length)return;
+    const score=e=>((e.event_description?2:0)+(e.price&&(e.price.raw||e.price.min)?2:0)+(e.location&&e.location.venue?1:0)+(e.cutoff_times&&Object.keys(e.cutoff_times).length?1:0)+((e.organizer_info&&(e.organizer_info.name||e.organizer_info.contact))?1:0));
+    const graph=[...filtered].sort((a,b)=>score(b)-score(a)).slice(0,60).map(e=>{
+      const city=(e.location&&e.location.city)||"India";
+      const venue=e.location&&e.location.venue;
+      const url=isFallback(e.event_url)?"https://mynextbib.com/":e.event_url;
+      const node={"@type":"SportsEvent",name:e.event_name,startDate:e.event_date,
+        eventStatus:"https://schema.org/EventScheduled",
+        eventAttendanceMode:(e.event_type==="Virtual")?"https://schema.org/OnlineEventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+        location:{"@type":"Place",name:venue?venue+", "+city:city,address:{"@type":"PostalAddress",addressLocality:city,addressCountry:"IN"}},
+        url:url};
+      if(e.event_description)node.description=String(e.event_description).slice(0,300);
+      if(e.price&&typeof e.price.min==="number")node.offers={"@type":"Offer",price:e.price.min,priceCurrency:"INR",availability:"https://schema.org/InStock",url:url};
+      return node;
+    });
+    const s=document.createElement("script");
+    s.type="application/ld+json";s.id="jsonld-events";
+    s.textContent=JSON.stringify({"@context":"https://schema.org","@graph":graph});
+    document.head.appendChild(s);
+  }catch(err){/* SEO extra must never break rendering */}
+}
+function buildRails(keys){
+  const counts={};
+  filtered.forEach(e=>{const k=monthKey(e.event_date);counts[k]=(counts[k]||0)+1;});
+  const rail=document.getElementById("monthRail");
+  const railM=document.getElementById("monthRailM");
+  if(!keys.length){rail.innerHTML=`<div class="text-[12px] text-zinc-400 px-1">No months</div>`;railM.innerHTML="";return;}
+  rail.innerHTML=keys.map((k,i)=>{
+    const [y,m]=k.split("-").map(Number);
+    return `<button data-month-link="${k}" data-active="${i===0}" class="month-link w-full text-left flex items-center gap-2.5 px-3 py-2 rounded-[10px] border border-transparent hover:border-zinc-200 hover:bg-white">
+      <span class="font-mono text-[12px] font-semibold w-[34px]">${MS[m-1]}</span>
+      <span class="text-[12px] text-zinc-500">${y}</span>
+      <span class="mcount ml-auto text-[11px] font-medium text-zinc-400">${counts[k]}</span>
+    </button>`;
+  }).join("");
+  rail.querySelectorAll("[data-month-link]").forEach(b=>b.addEventListener("click",()=>scrollToId("m-"+b.dataset.monthLink)));
+  railM.innerHTML=keys.map((k,i)=>{
+    const [y,m]=k.split("-").map(Number);
+    return `<button data-month-link="${k}" data-active="${i===0}" class="month-link shrink-0 h-7 px-3 rounded-full border text-[12px] font-medium ${i===0?"bg-accent text-white border-accent":"bg-white border-zinc-200 text-zinc-700"}">${MS[m-1]} ’${String(y).slice(2)} <span class="mcount ml-1 opacity-60">${counts[k]}</span></button>`;
+  }).join("");
+  railM.querySelectorAll("[data-month-link]").forEach(b=>b.addEventListener("click",()=>scrollToId("m-"+b.dataset.monthLink)));
+}
+function setActiveMonth(key){
+  document.querySelectorAll("[data-month-link]").forEach(b=>{
+    const on=b.dataset.monthLink===key;
+    b.dataset.active=String(on);
+    if(b.parentElement&&b.parentElement.id==="monthRailM"){
+      b.className=`month-link shrink-0 h-7 px-3 rounded-full border text-[12px] font-medium ${on?"bg-accent text-white border-accent":"bg-white border-zinc-200 text-zinc-700"}`;
+    }
+  });
+}
+function observeMonths(){
+  if(observer)observer.disconnect();
+  observer=new IntersectionObserver((ents)=>{
+    ents.forEach(en=>{if(en.isIntersecting)setActiveMonth(en.target.dataset.month);});
+  },{rootMargin:"-30% 0px -60% 0px",threshold:0});
+  document.querySelectorAll(".month-sec").forEach(s=>observer.observe(s));
+}
+function observeReveals(){
+  if(revealObs)revealObs.disconnect();
+  revealObs=new IntersectionObserver((ents)=>{
+    ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add("visible");revealObs.unobserve(en.target);}});
+  },{threshold:0.05});
+  document.querySelectorAll(".reveal").forEach(el=>revealObs.observe(el));
+  // first paint: show above-the-fold immediately
+  setTimeout(()=>{document.querySelectorAll(".reveal").forEach((el,i)=>{if(i<6)el.classList.add("visible");});},60);
+}
+
+/* ---------- drawer (progressive disclosure, hide empty) ---------- */
+function openDrawer(e){
+  if(!e)return;
+  drawerEvent=e;
+  const {dd,mon,dow}=fmtDate(e.event_date);
+  const fallback=isFallback(e.event_url)||e.url_status==="guessed"||e.url_status==="broken";
+  const city=e.location.city||"Unknown",venue=e.location.venue,address=e.location.address;
+  const dists=DIST_KEYS.filter(k=>e.distances&&e.distances[k]);
+  const priceRaw=e.price&&e.price.raw?e.price.raw:(e.price&&e.price.min?`₹${e.price.min}${e.price.max?" - ₹"+e.price.max:""}`:null);
+  const virtLg=(e.event_type||"Physical")==="Virtual"?`<span class="dpill dpill-lg dpill-dim"><i data-lucide="video" class="w-3 h-3 mr-0.5"></i>Virtual</span>`:"";
+  let html=`
+    <div class="flex gap-4">
+      <div class="shrink-0 w-[64px] h-[64px] rounded-[14px] border border-accentline/70 bg-accentsoft grid place-items-center">
+        <div class="text-center leading-none"><div class="font-mono text-[20px] font-semibold">${dd}</div><div class="text-[11px] tracking-widest font-semibold text-accentdeep/70">${mon}</div><div class="text-[10px] text-zinc-400 mt-0.5 uppercase">${dow}</div></div>
+      </div>
+      <div class="min-w-0"><h2 class="text-[19px] sm:text-[21px] font-semibold leading-[1.15] tracking-tight">${esc(e.event_name)}</h2>
+      <div class="mt-1 flex items-center gap-1.5 text-[13px] text-zinc-600"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i> ${esc(city)}${venue?" · "+esc(venue):""}</div>
+      ${address?`<div class="text-[12px] text-zinc-500 mt-1">${esc(address)}</div>`:""}</div>
+    </div>
+    <div class="flex flex-wrap gap-1.5">${virtLg}${dists.map(k=>`<span class="dpill dpill-lg dpill-hot">${k==="other"?"Other":k}</span>`).join("")||`<span class="text-[12px] text-zinc-500">No distance tagged</span>`}</div>`;
+  if(e.event_description)html+=`<section class="pt-4 border-t border-zinc-200"><h4 class="text-[11px] font-semibold tracking-wide uppercase text-zinc-400 mb-2">About</h4><p class="text-[13px] leading-[1.6] text-zinc-700">${esc(e.event_description)}</p></section>`;
+  if(e.registration_opens||e.registration_closes)html+=`<section class="pt-4 border-t border-zinc-200"><h4 class="text-[11px] font-semibold tracking-wide uppercase text-zinc-400 mb-2 flex items-center gap-1.5"><i data-lucide="calendar" class="w-3 h-3"></i> Registration</h4><div class="grid grid-cols-2 gap-3 text-[13px]">${e.registration_opens?`<div><span class="text-zinc-500">Opens</span><div class="font-medium">${esc(e.registration_opens)}</div></div>`:""}${e.registration_closes?`<div><span class="text-zinc-500">Closes</span><div class="font-medium">${esc(e.registration_closes)}</div></div>`:""}</div></section>`;
+  if(priceRaw)html+=`<section class="pt-4 border-t border-zinc-200"><h4 class="text-[11px] font-semibold tracking-wide uppercase text-zinc-400 mb-2 flex items-center gap-1.5"><i data-lucide="ticket" class="w-3 h-3"></i> Price</h4><div class="text-[14px] font-medium">${esc(priceRaw)}</div></section>`;
+  if(e.cutoff_times&&Object.keys(e.cutoff_times).length)html+=`<section class="pt-4 border-t border-zinc-200"><h4 class="text-[11px] font-semibold tracking-wide uppercase text-zinc-400 mb-2 flex items-center gap-1.5"><i data-lucide="timer" class="w-3 h-3"></i> Cutoffs</h4><div class="rounded-xl border border-zinc-200 overflow-hidden">${Object.entries(e.cutoff_times).map(([k,v])=>`<div class="flex justify-between px-3 py-2 text-[13px] border-b last:border-0 border-zinc-100"><span class="font-medium">${esc(k)}</span><span class="text-zinc-600">${esc(String(v))}</span></div>`).join("")}</div></section>`;
+  if(e.age_categories&&e.age_categories.length)html+=`<section class="pt-4 border-t border-zinc-200"><h4 class="text-[11px] font-semibold tracking-wide uppercase text-zinc-400 mb-2 flex items-center gap-1.5"><i data-lucide="users" class="w-3 h-3"></i> Age categories</h4><div class="flex flex-wrap gap-1.5">${e.age_categories.map(a=>`<span class="px-2.5 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-[12px] font-medium">${esc(a)}</span>`).join("")}</div></section>`;
+  if(e.inclusions&&Object.values(e.inclusions).some(Boolean)){
+    const map={t_shirt:{label:"T-Shirt",icon:"shirt"},medal:{label:"Medal",icon:"medal"},timing_chip:{label:"Timing",icon:"timer"},bib:{label:"Bib",icon:"ticket"},refreshments:{label:"Refreshments",icon:"coffee"},e_certificate:{label:"E-Cert",icon:"file-text"},goodie_bag:{label:"Goodie",icon:"package"}};
+    html+=`<section class="pt-4 border-t border-zinc-200"><h4 class="text-[11px] font-semibold tracking-wide uppercase text-zinc-400 mb-2">Inclusions</h4><div class="grid grid-cols-2 gap-2">${Object.entries(e.inclusions).filter(([k,v])=>v).map(([k])=>{const m=map[k]||{label:k,icon:"check"};return `<span class="inline-flex items-center gap-1.5 h-8 px-3 rounded-full border border-zinc-200 bg-zinc-50 text-[12px] font-medium"><i data-lucide="${m.icon}" class="w-3.5 h-3.5"></i> ${m.label}</span>`;}).join("")}</div></section>`;
+  }
+  if(e.organizer_info&&(e.organizer_info.name||e.organizer_info.contact))html+=`<section class="pt-4 border-t border-zinc-200"><h4 class="text-[11px] font-semibold tracking-wide uppercase text-zinc-400 mb-2">Organizer</h4>${e.organizer_info.name?`<div class="text-[13px] font-medium">${esc(e.organizer_info.name)}</div>`:""}${e.organizer_info.contact?`<div class="text-[12px] text-zinc-600 mt-1 break-words">${esc(e.organizer_info.contact)}</div>`:""}</section>`;
+  if(e.prize)html+=`<section class="pt-4 border-t border-zinc-200"><h4 class="text-[11px] font-semibold tracking-wide uppercase text-zinc-400 mb-2 flex items-center gap-1.5"><i data-lucide="trophy" class="w-3 h-3"></i> Prize</h4><p class="text-[13px] text-zinc-700">${esc(e.prize)}</p></section>`;
+  document.getElementById("drawerBody").innerHTML=html;
+  document.getElementById("drawerFoot").innerHTML=fallback
+    ?`<div class="h-12 rounded-full bg-zinc-100 border border-zinc-200 grid place-items-center text-[13px] font-semibold text-zinc-400">Details TBA — link not ready</div>`
+    :`<div class="relative group">
+        <div class="cta-hue absolute -inset-1 rounded-full bg-accent/45 blur-lg" aria-hidden="true"></div>
+        <a href="${esc(e.event_url)}" target="_blank" rel="noopener" class="relative h-12 w-full rounded-full bg-accent text-white inline-flex items-center justify-center gap-2 text-[14px] font-semibold shadow-[0_10px_28px_-8px_rgba(194,65,12,.6)] transition-all duration-200 group-hover:bg-accentdeep group-hover:shadow-[0_14px_38px_-6px_rgba(154,52,18,.65)] group-active:scale-[.99]">Open registration <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
+      </div>
+      <div class="mt-2 text-center text-[10.5px] text-zinc-400 truncate px-2">${esc(e.event_url)}</div>`;
+  const dr=document.getElementById("drawer");
+  dr.classList.remove("hidden");
+  requestAnimationFrame(()=>requestAnimationFrame(()=>dr.classList.add("open")));
+  document.getElementById("drawerBody").scrollTop=0;
+  if(lenis)lenis.stop();else document.body.style.overflow="hidden";
+  lucide.createIcons();
+  document.getElementById("drawerClose").focus({preventScroll:true});
+}
+function closeDrawer(){
+  const dr=document.getElementById("drawer");
+  if(dr.classList.contains("hidden"))return;
+  dr.classList.remove("open");
+  setTimeout(()=>{dr.classList.add("hidden");if(lenis)lenis.start();else document.body.style.overflow="";},320);
+}
+
+initLenis();
+window.lucide=window.lucide||{createIcons(){}};
+function boot(){initLenis();lucide.createIcons();loadData();}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
+</script>
+</body>
+</html>
