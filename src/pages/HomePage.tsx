@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Loader2, Search } from "lucide-react";
 import { useEventContext } from "@/context/EventContext";
+import { trackEvent } from "@/lib/analytics";
 import {
   Pagination,
   PaginationContent,
@@ -128,7 +129,7 @@ const HomePage: React.FC = () => {
                 <CitySelector
                   cities={cities}
                   selectedCity={selectedCity}
-                  onSelectCity={setSelectedCity}
+                  onSelectCity={(city) => { trackEvent("city_filter", { city: city || "All" }); setSelectedCity(city); }}
                 />
               </div>
               <div className="flex items-center gap-2 relative group">
@@ -138,7 +139,7 @@ const HomePage: React.FC = () => {
                 <DistanceSelector
                   distances={AVAILABLE_DISTANCES}
                   selectedDistance={selectedDistance}
-                  onSelectDistance={setSelectedDistance}
+                  onSelectDistance={(dist) => { trackEvent("distance_filter", { distance: dist || "All" }); setSelectedDistance(dist); }}
                 />
               </div>
             </div>

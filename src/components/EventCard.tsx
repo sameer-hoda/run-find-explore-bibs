@@ -9,8 +9,10 @@ import {
   Event,
   formatEventDate,
   getActiveDistances,
+  getLocationDisplay,
   slugify
 } from "@/services/eventService";
+import { trackEvent } from "@/lib/analytics";
 
 interface EventCardProps {
   event: Event;
@@ -41,7 +43,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const eventSlug = slugify(event_name);
 
   return (
-    <a href={event.event_url} target="_blank" rel="noopener noreferrer" className="block h-full">
+    <a href={event.event_url} target="_blank" rel="noopener noreferrer" className="block h-full" onClick={() => trackEvent("registration_click", { event_name, event_date, city: getLocationDisplay(location), source: "card" })}>
       <article
         className="group relative bg-white rounded-2xl sm:rounded-3xl border border-black/5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden flex items-stretch h-full"
         itemScope

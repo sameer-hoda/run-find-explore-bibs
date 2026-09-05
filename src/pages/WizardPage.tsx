@@ -6,11 +6,13 @@ import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
 import { FilterCriteria, Event } from "@/services/eventService";
 import { useEventContext } from "@/context/EventContext";
+import { trackEvent } from "@/lib/analytics";
 
 const WizardPage: React.FC = () => {
   const { setFilteredEvents, setFilterCriteria } = useEventContext();
   
   const handleWizardComplete = (events: Event[], criteria: FilterCriteria) => {
+    trackEvent("wizard_complete", { result_count: events.length, criteria });
     setFilteredEvents(events);
     setFilterCriteria(criteria);
   };

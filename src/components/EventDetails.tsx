@@ -30,6 +30,7 @@ import {
   TableRow
 } from "@/components/ui/table";
 import { Event, formatEventDate, getLocationDisplay } from "@/services/eventService";
+import { trackEvent } from "@/lib/analytics";
 
 interface EventDetailsProps {
   event: Event;
@@ -88,7 +89,7 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event }) => {
         </div>
 
         <Button asChild size="lg" className="mt-4 md:mt-0 bg-[#FC4C02] hover:bg-[#E34400] text-white rounded-full px-8 py-6 text-lg font-bold shadow-lg shadow-orange-200/50 transition-all hover:scale-105">
-          <a href={event_url} target="_blank" rel="noopener noreferrer">
+          <a href={event_url} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("registration_click", { event_name, event_date, city: locationDisplay, source: "details_button" })}>
             Register Now <ExternalLink className="ml-2 h-5 w-5" />
           </a>
         </Button>

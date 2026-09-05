@@ -33,7 +33,7 @@ const generateSitemap = () => {
         
         eventUrls = Object.values(events).map(event => {
           const slug = slugify(event.event_name);
-          return `${baseUrl}/event/${slug}`;
+          return `${baseUrl}/event/${slug}/`;
         });
         
         console.log(`Found ${eventUrls.length} events for sitemap.`);

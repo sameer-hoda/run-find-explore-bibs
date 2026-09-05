@@ -70,7 +70,7 @@ for (const slug of eventDirs) {
     const description = event.event_description
         ? event.event_description.substring(0, 160)
         : `Join ${event.event_name} in ${city}. Distances: ${distances}. Register now for this ${event.event_type || 'Physical'} running event.`;
-    const canonicalUrl = `https://mynextbib.com/event/${slug}`;
+    const canonicalUrl = `https://mynextbib.com/event/${slug}/`;
     const ogTitle = `${event.event_name} - ${city} | mynextbib.com`;
     const ogDescription = `Register for ${event.event_name}. A premier running event in ${city} featuring ${distances} distances.`;
 

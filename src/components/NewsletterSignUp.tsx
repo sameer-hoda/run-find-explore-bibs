@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useToast } from "./ui/use-toast";
+import { trackEvent } from "@/lib/analytics";
 
 const NewsletterSignUp: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -22,6 +23,7 @@ const NewsletterSignUp: React.FC = () => {
           title: "Success",
           description: result.message,
         });
+        trackEvent("newsletter_signup", {});
         setEmail("");
       } else {
         toast({
