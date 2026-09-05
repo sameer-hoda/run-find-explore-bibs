@@ -31,12 +31,15 @@ const generateSitemap = () => {
         const prdContent = fs.readFileSync(prdPath, 'utf8');
         const events = JSON.parse(prdContent);
         
-        eventUrls = Object.values(events).map(event => {
-          const slug = slugify(event.event_name);
-          return `${baseUrl}/event/${slug}/`;
-        });
-        
-        console.log(`Found ${eventUrls.length} events for sitemap.`);
+        const today = new Date().toISOString().split('T')[0];
+        eventUrls = Object.values(events)
+          .filter(event => event.event_date && event.event_date >= today)
+          .map(event => {
+            const slug = slugify(event.event_name);
+            return `${baseUrl}/event/${slug}/`;
+          });
+
+        console.log(`Found ${eventUrls.length} future events for sitemap.`);
       } catch (err) {
         console.error('Error parsing prd.txt:', err);
       }
