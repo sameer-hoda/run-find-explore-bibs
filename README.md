@@ -2,6 +2,12 @@
 
 > India's running-event calendar — marathons, half marathons, 10Ks and 5Ks across 100+ cities. Live at [mynextbib.com](https://mynextbib.com).
 
+[![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Live site](https://img.shields.io/badge/live-mynextbib.com-orange)](https://mynextbib.com)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](#)
+
+![MyNextBib homepage — month-grouped race timeline](docs/site-preview.png)
+
 ## Two frontends, one site — read this first
 
 | Surface | Source | Deploys to |
