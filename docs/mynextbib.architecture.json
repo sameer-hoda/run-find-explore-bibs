@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "MyNextBib",
+    "subtitle": "India running-event calendar \u2014 live system map (2026-09-05)",
+    "output": "mynextbib.architecture.html"
+  },
+  "components": [
+    {
+      "id": "runners",
+      "type": "external",
+      "label": "Runners",
+      "sublabel": "visitors + Googlebot",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        130,
+        64
+      ]
+    },
+    {
+      "id": "nginx",
+      "type": "security",
+      "label": "nginx :443",
+      "sublabel": "TLS + routing + login gates",
+      "pos": [
+        250,
+        220
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "node",
+      "type": "backend",
+      "label": "Node :3001",
+      "sublabel": "static dist + SEO middleware",
+      "pos": [
+        480,
+        220
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "timeline",
+      "type": "frontend",
+      "label": "Timeline homepage",
+      "sublabel": "v2-timeline, prerendered cards",
+      "pos": [
+        730,
+        220
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "events",
+      "type": "frontend",
+      "label": "Event pages",
+      "sublabel": "/event/* + redirect rules",
+      "pos": [
+        730,
+        340
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "sources",
+      "type": "external",
+      "label": "9+ sources",
+      "sublabel": "race sites + search discovery",
+      "pos": [
+        30,
+        600
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "scrapers",
+      "type": "backend",
+      "label": "Scrapers",
+      "sublabel": "TieredFetcher + Gemini co-worker",
+      "pos": [
+        210,
+        600
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "orchestrator",
+      "type": "backend",
+      "label": "Orchestrator",
+      "sublabel": "merge, dedupe, future-filter",
+      "pos": [
+        410,
+        600
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "enricher",
+      "type": "backend",
+      "label": "Enricher",
+      "sublabel": "classify, fix links, 10 fields",
+      "pos": [
+        610,
+        600
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "prd",
+      "type": "database",
+      "label": "prd.json",
+      "sublabel": "230 events, published to dist",
+      "pos": [
+        790,
+        600
+      ],
+      "size": [
+        150,
+        64
+      ]
+    },
+    {
+      "id": "kuma",
+      "type": "backend",
+      "label": "Uptime Kuma",
+      "sublabel": "4 monitors + Telegram alerts",
+      "pos": [
+        980,
+        340
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "goaccess",
+      "type": "backend",
+      "label": "GoAccess",
+      "sublabel": "nginx logs -> /traffic/ report",
+      "pos": [
+        980,
+        460
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "posthog",
+      "type": "cloud",
+      "label": "PostHog",
+      "sublabel": "clicks, replays, custom events",
+      "pos": [
+        1040,
+        580
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "gsc",
+      "type": "cloud",
+      "label": "Search Console",
+      "sublabel": "rank digest, Mondays",
+      "pos": [
+        480,
+        80
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "telegram",
+      "type": "messagebus",
+      "label": "Telegram",
+      "sublabel": "daily + outage + SEO digests",
+      "pos": [
+        990,
+        80
+      ],
+      "size": [
+        150,
+        64
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "EC2 ap-southeast-2 (3.25.91.141) \u2014 cron 04:30 UTC",
+      "wraps": [
+        "nginx",
+        "node",
+        "timeline",
+        "events",
+        "sources",
+        "scrapers",
+        "orchestrator",
+        "enricher",
+        "prd",
+        "kuma",
+        "goaccess"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "behind basic-auth login",
+      "wraps": [
+        "kuma",
+        "goaccess"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "runners",
+      "to": "nginx",
+      "variant": "emphasis"
+    },
+    {
+      "from": "nginx",
+      "to": "node",
+      "variant": "emphasis"
+    },
+    {
+      "from": "node",
+      "to": "timeline",
+      "variant": "emphasis"
+    },
+    {
+      "from": "node",
+      "to": "events",
+      "variant": "emphasis"
+    },
+    {
+      "from": "sources",
+      "to": "scrapers",
+      "variant": "emphasis"
+    },
+    {
+      "from": "scrapers",
+      "to": "orchestrator",
+      "variant": "emphasis"
+    },
+    {
+      "from": "orchestrator",
+      "to": "enricher",
+      "variant": "emphasis"
+    },
+    {
+      "from": "enricher",
+      "to": "prd",
+      "variant": "emphasis"
+    },
+    {
+      "from": "prd",
+      "to": "node",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "via": [
+        [
+          865,
+          540
+        ],
+        [
+          565,
+          540
+        ]
+      ]
+    },
+    {
+      "from": "kuma",
+      "to": "node",
+      "fromSide": "top",
+      "toSide": "top",
+      "via": [
+        [
+          1065,
+          180
+        ],
+        [
+          565,
+          180
+        ]
+      ]
+    },
+    {
+      "from": "kuma",
+      "to": "telegram",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "from": "gsc",
+      "to": "telegram",
+      "variant": "dashed"
+    },
+    {
+      "from": "timeline",
+      "to": "posthog",
+      "variant": "dashed"
+    },
+    {
+      "from": "runners",
+      "to": "gsc",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Pipeline stages",
+      "items": [
+        "Sources: 9+ race sites + Brave/SERP discovery",
+        "Scrapers: TieredFetcher (httpx/curl/Playwright/Jina) + Gemini AI co-worker",
+        "Orchestrator: merge, exact+fuzzy dedupe, future-only filter",
+        "Enricher: running-classifier, link fixing, 20 events/day x 10 fields"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Traffic truth",
+      "items": [
+        "GoAccess: humans vs bots from nginx logs, daily 05:30",
+        "PostHog: clicks, scroll depth, session replays",
+        "Search Console: queries, positions, Monday digest"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "SEO posture",
+      "items": [
+        "Future-only sitemap, lastmod = publish day",
+        "Retired event URLs 301 to homepage",
+        "Canonicals trailing-slash; Kuma push ping proves freshness"
+      ]
+    }
+  ]
+}
